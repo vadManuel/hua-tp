@@ -1,4 +1,5 @@
-# cop4710_final
+# Hua
+### A good for nothing online store
 
 - PHP 7.3.11
 - phpMyAdmin 5.0.1
