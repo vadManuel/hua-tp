@@ -47,5 +47,5 @@ function buildMessage($activation_link, $username) {
             </table>
             </div>
         </body>';
-    return $message
+    return $message;
 }
