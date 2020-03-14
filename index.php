@@ -32,9 +32,18 @@ switch ($uri) {
         }
         // require __DIR__ . ($loggedin ? '/main/index.php' : '/authentication/index.php');
         break;
+    case '/home':
+        if ($loggedin) {
+            // header('Location '.$uri);
+            require __DIR__ . '/main/index.php';
+        } else {
+            // header('Location /');
+            require __DIR__ . '/authentication/index.php'; 
+        }
+        // require __DIR__ . ($loggedin ? '/main'.$uri.'.php' : '/authentication/index.php');
+        break;
     case '/index':
     // Private uris
-    case '/home':
     case '/profile':
         if ($loggedin) {
             // header('Location '.$uri);
@@ -73,3 +82,15 @@ switch ($uri) {
         http_response_code(404);
         require __DIR__ . '/404.html';
 }
+
+?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <link rel='icon' type='image/png' href='media/favicon.png' />
+        <link rel='manifest' href='manifest.json' />
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+    </head>
+<html>
