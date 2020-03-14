@@ -23,23 +23,51 @@ switch ($uri) {
     // Root
     case '/':
     case '':
-        require __DIR__ . ($loggedin ? '/main/index.php' : '/authentication/index.php');
+        if ($loggedin) {
+            // ($uri != '/home') ?: header('Location /home');
+            require __DIR__ . '/main/index.php';
+        } else {
+            // ($uri != '/') ?: header('Location /');
+            require __DIR__ . '/authentication/index.php'; 
+        }
+        // require __DIR__ . ($loggedin ? '/main/index.php' : '/authentication/index.php');
         break;
     case '/index':
     // Private uris
     case '/home':
     case '/profile':
-        require __DIR__ . ($loggedin ? '/main'.$uri.'.php' : '/authentication/index.php');
+        if ($loggedin) {
+            // header('Location '.$uri);
+            require __DIR__ . '/main'.$uri.'.php';
+        } else {
+            // header('Location /');
+            require __DIR__ . '/authentication/index.php'; 
+        }
+        // require __DIR__ . ($loggedin ? '/main'.$uri.'.php' : '/authentication/index.php');
         break;
     // Public uris
     case '/login':
     case '/signup':
     case '/register':
     case '/activate':
-        require __DIR__ . ($loggedin ? '/main/home' : '/authentication'.$uri.'.php');
+        if ($loggedin) {
+            // header('Location /home');
+            require __DIR__ . '/main/index.php';
+        } else {
+            // header('Location /');
+            require __DIR__ . '/authentication'.$uri.'.php'; 
+        }
+        // require __DIR__ . ($loggedin ? '/main/home' : '/authentication'.$uri.'.php');
         break;
     case '/logout':
-        require __DIR__ . '/authentication/logout.php';
+        if ($loggedin) {
+            // header('Location /logout');
+            require __DIR__ . '/authentication/logout.php';
+        } else {
+            // header('Location /');
+            require __DIR__ . '/authentication/index.php'; 
+        }
+        // require __DIR__ . ($loggedin ? '/authentication/logout.php' : '/authentication/index.php');
         break;
     default:
         http_response_code(404);
