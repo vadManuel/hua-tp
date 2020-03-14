@@ -1,6 +1,6 @@
 <?php
 
-include 'util.php';
+include '../utility/util.php';
 
 session_start();
 

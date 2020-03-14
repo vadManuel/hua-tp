@@ -1,54 +1,47 @@
 <?php
 
 session_start();
+$request = $_SERVER['REQUEST_URI'];
 
-// Redirect to home if loggedin
 if (isset($_SESSION['loggedin'])) {
-    header('Location: ./home');
-    exit;
+    switch ($request) {
+        case '/':
+        case '':
+        case '/index':
+        case '/home':
+            require __DIR__ . '/main/index.php';
+            break;
+        case '/profile':
+            require __DIR__ . '/main/profile.php';
+            break;
+        case '/logout':
+            require __DIR__ . '/authentication/logout.php';
+            break;
+        default:
+            http_response_code(404);
+            require __DIR__ . '/404.html';
+    }
+} else {
+    switch ($request) {
+        case '/':
+        case '':
+        case '/index':
+            require __DIR__ . '/authentication/index.php';
+            break;
+        case '/login':
+            require __DIR__ . '/authentication/login.php';
+            break;
+        case '/signup':
+            require __DIR__ . '/authentication/signup.php';
+            break;
+        case '/register':
+            require __DIR__ . '/authentication/register.php';
+            break;
+        case '/activate':
+            require __DIR__ . '/authentication/activate.php';
+            break;
+        default:
+            http_response_code(404);
+            require __DIR__ . '/404.html';
+    }
 }
-
-?>
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <title>My Account</title>
-        <link href='./css/custom.css' rel='stylesheet' type='text/css'>
-    </head>
-    <body class='outer'>
-        <div class='middle'>
-            <div class='d-flex flex-column align-items-center justify-content-center flex-nowrap' style='height:100%'>
-                <!-- Judge the professor for not letting me use bootstrap -->
-                <img style='height:140px;' src='./media/hua_logo.png' alt='' />
-                <!-- <div style='width:64px;height:64px;margin-bottom:-67px;z-index:1;border-radius:100%;background-color:white;'></div>
-                <div style='width:70px;height:70px;border-radius:100%;background-color:rgb(8,81,114);'></div> -->
-                <!-- <div class='fs-14' style='padding-top:1rem;color:#8F9BB3;font-weight:bold;'>Sign In</div> -->
-                
-                <form action='authenticate.php' method='post' class='d-flex flex-column auth-form-container' style='padding:1rem 2rem;margin-top:3rem;'>
-
-                    <input class='auth-input fullwidth fs-12' type='email' name='email' placeholder='+ Email' id='email' required>
-                    <input class='auth-input fullwidth fs-12' style='margin-top:1rem;' type='password' name='password' placeholder='+ Password' id='password' required>
-                    <?php
-                        echo '<p class="fs-10 d-flex justify-content-between flex-row flex-wrap" style="color:red;margin-top:5px;">
-                            <span id="foo" style="display:none;">&#9785; '.$_SESSION['display_error'].'</span>
-                            <a class="anchor">Forgot password?</a>
-                        </p>';
-
-                        if (isset($_SESSION['display_error']) && !empty($_SESSION['display_error'])) {
-                            echo '<script>document.getElementById("foo").style = "display:block"</script>';
-                            // echo '<script>
-                            //     window.setTimeout(() => { document.getElementById("foo").style = "display:block" }, 5000)
-                            // </script>';
-                        }
-                        // echo '<p class="fs-08" style="color:gray;text-align:right;margin-top:5px;"><a class="anchor">Forgot password?</a></p>';
-                    ?>
-
-                    <button class='auth-button fullwidth fs-14' style='margin-top:4rem;border-radius:3px;' type='submit'>Sign In</button>
-                    <p class='fs-10' style='color:gray;text-align:center;margin-top:2rem;'>Don't have an account? <a class='anchor' href='./signup'>Sign Up</a></p>
-                </form>
-            </div>
-        </div>
-    </body>
-</html>
