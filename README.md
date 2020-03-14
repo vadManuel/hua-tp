@@ -1,9 +1,7 @@
 <p align="center">
     <img src="media/hua_logo.png" alt="Hua!" width="256px" />
 </p>
-<br/>
-<br/>
-<br/>
+<br/><br/>
 
 
 ![](https://img.shields.io/static/v1?label=PHP&message=7.3.11&color=a6050d)
@@ -11,7 +9,8 @@
 ![](https://img.shields.io/static/v1?label=Apache%20(Unix)&message=2.4.41&color=387f78)
 ![](https://img.shields.io/static/v1?label=MySQL&message=8.0.19&color=blue)
 
-A plain old Amazon ripoff  
+*A plain old Amazon ripoff*
+<br><br>
 
 ### Description
 We get to create an online discount store by utilizing what we learned in class. Nevermind those pesky new-ish technology like [Boostrap](https://getbootstrap.com) or literally any Javascript library. I mean who needs those! 
