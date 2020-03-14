@@ -1,13 +1,13 @@
 <?php
 
-include 'utility/util.php';
+include '../../utility/util.php';
 
 session_start();
 
 $con = open_connection();
 
 if ( !isset($_POST['email'], $_POST['password']) ) {
-	header('Location: /');
+	header('Location: ../');
 	exit;
 }
 
@@ -21,17 +21,21 @@ if ($stmt = $con->prepare('SELECT id, password, username FROM accounts WHERE ema
         $stmt->fetch();
         
 		if (password_verify($_POST['password'], $password)) {
+            session_regenerate_id();
+
 			$_SESSION['display_error'] = null;
 			$_SESSION['loggedin'] = TRUE;
 			$_SESSION['username'] = $username;
             $_SESSION['id'] = $id;
+
+            header('Location: ../../');
 		} else {
             $_SESSION['display_error'] = 'Wrong password. Try again or click Forgot password to reset it.';
-            header('Location: /');
+            header('Location: ../');
 		}
 	} else {
         $_SESSION['display_error'] = 'Couldn\'t find your Hua! Account';
-        header('Location: /');
+        header('Location: ../');
 	}
 
 	$stmt->close();

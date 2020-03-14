@@ -24,14 +24,14 @@ session_start();
                 <div style='width:70px;height:70px;border-radius:100%;background-color:rgb(8,81,114);'></div> -->
                 <!-- <div class='fs-14' style='padding-top:1rem;color:#8F9BB3;font-weight:bold;'>Sign In</div> -->
                 
-                <form action='login.php' method='post' class='d-flex flex-column auth-form-container' style='padding:1rem 2rem;margin-top:3rem;'>
+                <form action='authentication/calls/login.php' method='post' class='d-flex flex-column auth-form-container' style='padding:1rem 2rem;margin-top:3rem;'>
 
                     <input class='auth-input fullwidth fs-12' type='email' name='email' placeholder='+ Email' id='email' required>
                     <input class='auth-input fullwidth fs-12' style='margin-top:1rem;' type='password' name='password' placeholder='+ Password' id='password' required>
                     <?php
                         echo '<p class="fs-10 d-flex justify-content-between flex-row flex-wrap" style="color:red;margin-top:5px;">
                             <span id="foo" style="display:none;">&#9785; '.$_SESSION['display_error'].'</span>
-                            <a class="anchor">Forgot password?</a>
+                            <a href="reset" class="anchor">Forgot password?</a>
                         </p>';
 
                         if (isset($_SESSION['display_error']) && !empty($_SESSION['display_error'])) {

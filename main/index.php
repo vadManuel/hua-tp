@@ -18,6 +18,11 @@ $stmt->close();
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset='utf-8'>
+        <link rel='icon' type='image/png' href='media/favicon.png' />
+        <link rel='manifest' href='manifest.json' />
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+
         <title>Home Page</title>
         <link href='style/custom.css' rel='stylesheet' type='text/css'>
     </head>
@@ -26,7 +31,7 @@ $stmt->close();
             <div>
                 <h1>Hua!</h1>
                 <a href='profile'>Profile</a>
-                <a href='logout'>Logout</a>
+                <a href='authentication/calls/logout.php'>Logout</a>
             </div>
         </nav>
         <div>

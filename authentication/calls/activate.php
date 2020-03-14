@@ -1,6 +1,6 @@
 <?php
 
-include 'utility/util.php';
+include '../../utility/util.php';
 $con = open_connection();
 
 if (isset($_GET['email'], $_GET['code'])) {
