@@ -23,11 +23,13 @@ We get to create an online discount store by utilizing what we learned in class.
 ├── 404.html
 ├── manifest.json
 ├── authentication
-│   ├── activate.php
+│   ├── calls
+│   │   ├── activate.php
+│   │   ├── login.php
+│   │   ├── logout.php
+│   │   └── register.php
 │   ├── index.php
-│   ├── login.php
-│   ├── logout.php
-│   ├── register.php
+│   ├── reset.php
 │   └── signup.php
 ├── main
 │   ├── index.php
