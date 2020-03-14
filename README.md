@@ -9,21 +9,32 @@
 ![](https://img.shields.io/static/v1?label=Apache%20(Unix)&message=2.4.41&color=387f78)
 ![](https://img.shields.io/static/v1?label=MySQL&message=8.0.19&color=blue)
 
-*A plain old Amazon ripoff*
+*A plain old Amazon ripoff!*
 <br><br>
 
 ### Description
-We get to create an online discount store by utilizing what we learned in class. Nevermind those pesky new-ish technology like [Boostrap](https://getbootstrap.com) or literally any Javascript library. I mean who needs those! 
+We get to create an online discount store by utilizing what we learned in class. Nevermind those pesky new-ish technology like [Boostrap](https://getbootstrap.com) or literally any Javascript library. I mean... who needs those! 
 
 ### Contents
 <pre>
 .
-├── logout.php
+├── .htaccess
 ├── index.php
-├── home.php
-├── buildMessage.php
-├── authenticate.php
-├── activate.php
+├── 404.html
+├── manifest.json
+├── authentication
+│   ├── activate.php
+│   ├── index.php
+│   ├── login.php
+│   ├── logout.php
+│   ├── register.php
+│   └── signup.php
+├── main
+│   ├── index.php
+│   └── profile.php
+├── utility
+│   ├── buildMessage.php
+│   └── util.php
 ├── media
 │   ├── favicon.png
 │   └── hua_logo.png
@@ -168,5 +179,6 @@ I'm currently only hosting it locally. So, just let me know if you need help set
 
 
 ### Resources
+- [PHP Router](https://www.taniarascia.com/the-simplest-php-router/)
 - [Project Description](http://www.cs.ucf.edu/~kienhua/classes/COP4710/Projects/ProjDescription.pdf)
 - [Markdown is dumb and apparently <ins>this</ins> needs an html tag](https://github.com/jch/html-pipeline/blob/master/lib/html/pipeline/sanitization_filter.rb)
