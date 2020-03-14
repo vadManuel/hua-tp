@@ -1,8 +1,38 @@
-# Hua
-### A plain old Amazon ripoff
-### ~~A good for nothing online store~~
+<p align="center">
+    <img src="media/hua_logo.png" alt="Hua!" width="256px" />
+</p>
+<br/>
+<br/>
+<br/>
 
-## Working Schemas
+
+![](https://img.shields.io/static/v1?label=PHP&message=7.3.11&color=a6050d)
+![](https://img.shields.io/static/v1?label=phpMyAdmin&message=7.3.11&color=orange)
+![](https://img.shields.io/static/v1?label=Apache%20(Unix)&message=2.4.41&color=387f78)
+![](https://img.shields.io/static/v1?label=MySQL&message=8.0.19&color=blue)
+
+A plain old Amazon ripoff  
+
+### Description
+We get to create an online discount store by utilizing what we learned in class. Nevermind those pesky new-ish technology like [Boostrap](https://getbootstrap.com) or literally any Javascript library. I mean who needs those! 
+
+### Contents
+<pre>
+.
+├── logout.php
+├── index.php
+├── home.php
+├── buildMessage.php
+├── authenticate.php
+├── activate.php
+├── media
+│   ├── favicon.png
+│   └── hua_logo.png
+└── css
+    └── custom.css
+</pre>
+
+### Working Schemas
 <!-- All this just so I could underline the primary key -->
 <table>
 <tr>
@@ -133,12 +163,11 @@
 </tr>
 </table>
 
-### Tech Used
-- PHP 7.3.11
-- phpMyAdmin 5.0.1
-- Apache/2.4.41
-- MySQL 8.0.19
+<br>
 
 I'm currently only hosting it locally. So, just let me know if you need help setting it up.
 
-[Markdown is dumb and apparently <ins>this</ins> needs an html tag](https://github.com/jch/html-pipeline/blob/master/lib/html/pipeline/sanitization_filter.rb)
+
+### Resources
+- [Project Description](http://www.cs.ucf.edu/~kienhua/classes/COP4710/Projects/ProjDescription.pdf)
+- [Markdown is dumb and apparently <ins>this</ins> needs an html tag](https://github.com/jch/html-pipeline/blob/master/lib/html/pipeline/sanitization_filter.rb)
