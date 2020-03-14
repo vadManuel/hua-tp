@@ -1,4 +1,4 @@
 Options +SymLinksIfOwnerMatch
 RewriteEngine on
-RewriteCond %{REQUEST_URI} ^((?!media|style|utility).)*$
+RewriteCond %{REQUEST_URI} ^((?!media|style|utility|calls).)*$
 RewriteRule . index.php [L]
