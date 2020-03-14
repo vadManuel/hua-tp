@@ -1,5 +1,4 @@
-RewriteEngine On
-RewriteBase /
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.+)$ index.php [QSA,L]
+Options +SymLinksIfOwnerMatch
+RewriteEngine on
+RewriteCond %{REQUEST_URI} ^((?!media|style|utility).)*$
+RewriteRule . index.php [L]
