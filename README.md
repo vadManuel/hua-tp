@@ -109,7 +109,7 @@ We get to create an online discount store by utilizing what we learned in class.
   <td></td>
 </tr>
 <tr>
-  <th colspan="6">Product</th>
+  <th colspan="6">Products</th>
 </tr>
 <tr>
   <th>Name</th><th>Type</th><th>Attributes</th>
