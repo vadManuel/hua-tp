@@ -1,14 +1,8 @@
 <?php
 
-include 'util.php';
+include 'utility/util.php';
 
 session_start();
-
-// redirect to login if not authed
-if (!isset($_SESSION['loggedin'])) {
-    header('Location: ./');
-    exit;
-}
 
 $con = open_connection();
 
@@ -25,14 +19,14 @@ $stmt->close();
 <html>
     <head>
         <title>Home Page</title>
-        <link href='./css/custom.css' rel='stylesheet' type='text/css'>
+        <link href='style/custom.css' rel='stylesheet' type='text/css'>
     </head>
     <body class='loggedin'>
         <nav class='navtop'>
             <div>
                 <h1>Hua!</h1>
-                <a href='./profile'>Profile</a>
-                <a href='./logout'>Logout</a>
+                <a href='profile'>Profile</a>
+                <a href='logout'>Logout</a>
             </div>
         </nav>
         <div>

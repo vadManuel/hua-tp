@@ -1,7 +1,7 @@
 <?php
 
-include 'util.php';
-include 'buildMessage.php';
+include 'utility/util.php';
+include 'utility/buildMessage.php';
 
 session_start();
 
@@ -11,7 +11,7 @@ if (!isset($_POST['username'], $_POST['password'], $_POST['email'])
     || empty($_POST['username']) || empty($_POST['password']) || empty($_POST['email'])
     ) {
     // this shouldn't really happen unless someone goes directly to /register.php
-    header('Location: ./signup');
+    header('Location: /signup');
     exit;
 }
 
@@ -44,17 +44,13 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
             $isMailed = mail($_POST['email'], $subject, $message, $headers);
             
             if ($isMailed) {
-                session_regenerate_id();
-
+                $_SESSION['display_error'] = null;
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['username'] = $_POST['username'];
                 $_SESSION['id'] = $id;
-    
-                header('Location: ./home');
             } else {
                 echo 'Failed to send email to '.$_POST['email'].'.';
             }
-
         } else {
             echo 'Bad bad statement!';
         }

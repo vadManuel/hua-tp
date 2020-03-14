@@ -2,25 +2,24 @@
 
 session_start();
 
-// Redirect to home if loggedin
-if (isset($_SESSION['loggedin'])) {
-    header('Location: ./home');
-    exit;
-}
-
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset='utf-8'>
+        <link rel='icon' type='image/png' href='media/favicon.png' />
+        <link rel='manifest' href='manifest.json' />
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+
         <title>Register</title>
-        <link href='./css/custom.css' rel='stylesheet' type='text/css'>
+        <link href='style/custom.css' rel='stylesheet' type='text/css'>
     </head>
     <body class='outer'>
         <div class='middle'>
             <div class='d-flex flex-column align-items-center justify-content-center flex-nowrap' style='height:100%'>
                 <!-- Judge the professor for not letting me use bootstrap -->
-                <img style='height:140px;' src='./media/hua_logo.png' alt='' />
+                <img style='height:140px;' src='media/hua_logo.png' alt='' />
                 <!-- <div class='fs-14' style='padding-top:1rem;color:#8F9BB3;font-weight:bold;'>Sign In</div> -->
                 
                 <form action='register.php' method='post' autocomple='off' class='d-flex flex-column auth-form-container' style='padding:1rem 2rem;margin-top:3rem;'>
