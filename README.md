@@ -12,6 +12,11 @@
 *A plain old Amazon ripoff!*
 <br><br>
 
+### Collaborators
+<img src="https://avatars2.githubusercontent.com/u/7086685?s=400&u=a654bb2b5e4749953357409ed095979211e2daa6&v=4" alt="vadManuel" width="50px" />
+<img src="https://avatars0.githubusercontent.com/u/17726904?s=400&u=9acf9b67a85624cacf86f162e97f9ade3c82be34&v=4" alt="JarvisEQ" width="50px" />
+
+
 ### Description
 We get to create an online discount store by utilizing what we learned in class. Nevermind those pesky new-ish technology like [Boostrap](https://getbootstrap.com) or literally any Javascript library. I mean... who needs those! 
 
