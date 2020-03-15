@@ -1,8 +1,7 @@
 <p align="center">
-    <img src="media/hua_logo.png" alt="Hua!" width="256px" />
+  <img src="media/hua_logo.png" alt="Hua!" width="256px" />
 </p>
 <br/><br/>
-
 
 ![](https://img.shields.io/static/v1?label=PHP&message=7.3.11&color=a6050d)
 ![](https://img.shields.io/static/v1?label=phpMyAdmin&message=7.3.11&color=orange)
@@ -10,12 +9,19 @@
 ![](https://img.shields.io/static/v1?label=MySQL&message=8.0.19&color=blue)
 
 *A plain old Amazon ripoff!*
-<br><br>
+
+### Index
+- [Collaborators](#collaborators)
+- [Description](#description)
+- [Contents](#contents)
+- [Working Schemas](#working-schemas)
+- [TODO](#todo)
+- [Resources](#resources) 
 
 ### Collaborators
 <p>
-<a href="https://www.github.com/vadManuel"><img src="https://avatars2.githubusercontent.com/u/7086685?s=400&u=a654bb2b5e4749953357409ed095979211e2daa6&v=4" alt="vadManuel" width="50px" /></a>
-<a href="https://www.github.com/JarvisEQ"><img src="https://avatars0.githubusercontent.com/u/17726904?s=400&u=9acf9b67a85624cacf86f162e97f9ade3c82be34&v=4" alt="JarvisEQ" width="50px" /></a>
+  <a href="https://www.github.com/vadManuel"><img src="https://avatars2.githubusercontent.com/u/7086685?s=400&u=a654bb2b5e4749953357409ed095979211e2daa6&v=4" alt="vadManuel" width="50px" /></a>
+  <a href="https://www.github.com/JarvisEQ"><img src="https://avatars0.githubusercontent.com/u/17726904?s=400&u=9acf9b67a85624cacf86f162e97f9ade3c82be34&v=4" alt="JarvisEQ" width="50px" /></a>
 </p>
 
 ### Description
@@ -46,7 +52,7 @@ We get to create an online discount store by utilizing what we learned in class.
 ├── media
 │   ├── favicon.png
 │   └── hua_logo.png
-└── css
+└── style
     └── custom.css
 </pre>
 
@@ -183,8 +189,13 @@ We get to create an online discount store by utilizing what we learned in class.
 
 <br>
 
-I'm currently only hosting it locally. So, just let me know if you need help setting it up.
-
+### TODO
+- [ ] ERD
+- [x] Authentication
+- [x] Router
+- [ ] Navbar
+- [ ] Update TODO
+- [ ] Presentation
 
 ### Resources
 - [PHP Router](https://www.taniarascia.com/the-simplest-php-router/)
