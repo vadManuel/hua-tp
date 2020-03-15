@@ -4,7 +4,7 @@
 <br/><br/>
 
 ![](https://img.shields.io/static/v1?label=PHP&message=7.3.11&color=a6050d)
-![](https://img.shields.io/static/v1?label=phpMyAdmin&message=7.3.11&color=orange)
+![](https://img.shields.io/static/v1?label=phpMyAdmin&message=5.0.1&color=orange)
 ![](https://img.shields.io/static/v1?label=Apache%20(Unix)&message=2.4.41&color=387f78)
 ![](https://img.shields.io/static/v1?label=MySQL&message=8.0.19&color=blue)
 
