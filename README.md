@@ -15,7 +15,6 @@
 - [Description](#description)
 - [Contents](#contents)
 - [Working Schemas](#working-schemas)
-- [TODO](#todo)
 - [Resources](#resources) 
 
 ### Collaborators
@@ -191,14 +190,6 @@ We get to create an online discount store by utilizing what we learned in class.
 </table>
 
 <br>
-
-### TODO
-- [ ] ERD
-- [x] Authentication
-- [x] Router
-- [ ] Navbar
-- [ ] Update TODO
-- [ ] Presentation
 
 ### Resources
 - [PHP Router](https://www.taniarascia.com/the-simplest-php-router/)
