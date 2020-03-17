@@ -22,6 +22,7 @@
 <p>
   <a href="https://www.github.com/vadManuel"><img src="https://avatars2.githubusercontent.com/u/7086685?s=400&u=a654bb2b5e4749953357409ed095979211e2daa6&v=4" alt="vadManuel" width="50px" /></a>
   <a href="https://www.github.com/JarvisEQ"><img src="https://avatars0.githubusercontent.com/u/17726904?s=400&u=9acf9b67a85624cacf86f162e97f9ade3c82be34&v=4" alt="JarvisEQ" width="50px" /></a>
+  <a href="https://www.github.com/Kinglatour"><img src="https://avatars0.githubusercontent.com/u/48734370?s=400&v=4" alt="Kinglatour" width="50px" /></a>
 </p>
 
 ### Description
