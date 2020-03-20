@@ -1,13 +1,17 @@
+### Pathing
+1. Root view: all products **Manny =>** search bar
+
 ### Done
 - Authentication (Login, Registration, Activation)
 - Router
 
 ### Todo
 - **Mei** ERD
-- Navbar
-  - **Alex** Non-auth: Login, Register, Cart
+- **Alex** Navbar
+  - Non-auth: Login, Register, Cart
   - Authed: Sign Out, Cart, Settings: (add credit card, profile)
-- **Barry** Add user info (address, credit card info)
+- Add user info (address, credit card info)
+- **Barry** Checkout page
 - Actual store
   - Cards for each product
 - Presentation
