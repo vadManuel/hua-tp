@@ -3,11 +3,11 @@
 - Router
 
 ### Todo
-- ERD
+- **Mei** ERD
 - Navbar
-  - Non-auth: Login, Register, Cart
+  - **Alex** Non-auth: Login, Register, Cart
   - Authed: Sign Out, Cart, Settings: (add credit card, profile)
-- Add user info (address, credit card info)
+- **Barry** Add user info (address, credit card info)
 - Actual store
   - Cards for each product
 - Presentation
