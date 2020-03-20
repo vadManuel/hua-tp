@@ -12,6 +12,8 @@
   - Authed: Sign Out, Cart, Settings: (add credit card, profile)
 - Add user info (address, credit card info)
 - **Barry** Checkout page
+- New Table Discount_Codes
+- New Table Transactions
 - Actual store
   - Cards for each product
 - Presentation
