@@ -1,11 +1,15 @@
 ### Done
-- Authentication
+- Authentication (Login, Registration, Activation)
 - Router
 
 ### Todo
-- Update Todo
 - ERD
 - Navbar
+  - Non-auth: Login, Register, Cart
+  - Authed: Sign Out, Cart, Settings: (add credit card, profile)
+- Add user info (address, credit card info)
+- Actual store
+  - Cards for each product
 - Presentation
 
 ### Notes
