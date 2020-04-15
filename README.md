@@ -8,7 +8,7 @@
 ![](https://img.shields.io/static/v1?label=Apache%20(Unix)&message=2.4.41&color=387f78)
 ![](https://img.shields.io/static/v1?label=MySQL&message=8.0.19&color=blue)
 
-*A plain old Amazon ripoff!*
+*Your online toilet paper supplier!*  
 
 ### Index
 - [Collaborators](#collaborators)
