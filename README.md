@@ -63,13 +63,19 @@ We get to create an online discount store by utilizing what we learned in class.
 <!-- All this just so I could underline the primary key -->
 <table>
 <tr>
-  <th colspan="6">Users</th>
+  <th colspan="7">Users</th>
 </tr>
 <tr>
-  <th>Name</th><th>Type</th><th>Attributes</th>
-  <th>Null</th><th>Default</th><th>Extra</th>
+  <th align="left">#</th>
+  <th align="left">Name</th>
+  <th align="left">Type</th>
+  <th>Attributes</th>
+  <th>Null</th>
+  <th align="left">Default</th>
+  <th align="left">Extra</th>
 </tr>
 <tr>
+  <td>1</td>
   <td><ins><code>id</code></ins></td>
   <td><code>int</code></td>
   <td></td>
@@ -78,6 +84,7 @@ We get to create an online discount store by utilizing what we learned in class.
   <td>auto increment</td>
 </tr>
 <tr>
+  <td>2</td>
   <td><code>username</code></td>
   <td><code>varchar(50)</code></td>
   <td></td>
@@ -86,6 +93,7 @@ We get to create an online discount store by utilizing what we learned in class.
   <td></td>
 </tr>
 <tr>
+  <td>3</td>
   <td><code>password</code></td>
   <td><code>varchar(255)</code></td>
   <td></td>
@@ -94,6 +102,7 @@ We get to create an online discount store by utilizing what we learned in class.
   <td></td>
 </tr>
 <tr>
+  <td>4</td>
   <td><code>email</code></td>
   <td><code>varchar(100)</code></td>
   <td></td>
@@ -102,6 +111,7 @@ We get to create an online discount store by utilizing what we learned in class.
   <td></td>
 </tr>
 <tr>
+  <td>5</td>
   <td><code>activation_code</code></td>
   <td><code>varchar(100)</code></td>
   <td></td>
@@ -110,7 +120,8 @@ We get to create an online discount store by utilizing what we learned in class.
   <td></td>
 </tr>
 <tr>
-  <td><code>last_login</code></td>
+  <td>6</td>
+  <td><code>created_on</code></td>
   <td><code>timestamp</code></td>
   <td></td>
   <td><code>false</code></td>
@@ -118,11 +129,75 @@ We get to create an online discount store by utilizing what we learned in class.
   <td></td>
 </tr>
 <tr>
-  <td><code>created_on</code></td>
-  <td><code>timestamp</code></td>
+  <td>7</td>
+  <td><code>address_1</code></td>
+  <td><code>varchar(100)</code></td>
   <td></td>
   <td><code>false</code></td>
+  <td><code>none</code></td>
   <td></td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>address_2</code></td>
+  <td><code>varchar(100)</code></td>
+  <td></td>
+  <td><code>false</code></td>
+  <td><code>none</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>zip</code></td>
+  <td><code>varchar(100)</code></td>
+  <td></td>
+  <td><code>false</code></td>
+  <td><code>none</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td>10</td>
+  <td><code>city</code></td>
+  <td><code>varchar(100)</code></td>
+  <td></td>
+  <td><code>false</code></td>
+  <td><code>none</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td>11</td>
+  <td><code>state</code></td>
+  <td><code>varchar(100)</code></td>
+  <td></td>
+  <td><code>false</code></td>
+  <td><code>none</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td>12</td>
+  <td><code>card_name</code></td>
+  <td><code>varchar(100)</code></td>
+  <td></td>
+  <td><code>false</code></td>
+  <td><code>none</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td>13</td>
+  <td><code>card_number</code></td>
+  <td><code>varchar(100)</code></td>
+  <td></td>
+  <td><code>false</code></td>
+  <td><code>none</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td>14</td>
+  <td><code>card_exp</code></td>
+  <td><code>date</code></td>
+  <td></td>
+  <td><code>false</code></td>
+  <td><code>none</code></td>
   <td></td>
 </tr>
 <tr>

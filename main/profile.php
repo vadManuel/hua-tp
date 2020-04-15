@@ -6,7 +6,7 @@ session_start();
 
 $con = open_connection();
 
-$stmt = $con->prepare('SELECT password, email, activation_code FROM accounts WHERE id = ?');
+$stmt = $con->prepare('SELECT password, email, activation_code FROM users WHERE user_id = ?');
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
 $stmt->bind_result($password, $email, $activation_code);

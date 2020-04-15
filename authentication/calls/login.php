@@ -7,11 +7,11 @@ session_start();
 $con = open_connection();
 
 if ( !isset($_POST['email'], $_POST['password']) ) {
-	header('Location: ../');
+	header('Location: ../../login');
 	exit;
 }
 
-if ($stmt = $con->prepare('SELECT id, password, username FROM accounts WHERE email = ?')) {
+if ($stmt = $con->prepare('SELECT user_id, password, username FROM users WHERE email = ?')) {
     $stmt->bind_param('s', $_POST['email']);
     $stmt->execute();
     
@@ -28,15 +28,17 @@ if ($stmt = $con->prepare('SELECT id, password, username FROM accounts WHERE ema
 			$_SESSION['username'] = $username;
             $_SESSION['id'] = $id;
 
-            header('Location: ../../');
+            header('Location: index');
 		} else {
             $_SESSION['display_error'] = 'Wrong password. Try again or click Forgot password to reset it.';
-            header('Location: ../');
+            header('Location: ../../login');
 		}
 	} else {
         $_SESSION['display_error'] = 'Couldn\'t find your Hua! Account';
-        header('Location: ../');
+        header('Location: ../../login');
 	}
 
 	$stmt->close();
+} else {
+    echo 'Error building login statement.';
 }
