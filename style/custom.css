@@ -434,6 +434,14 @@ body {
     color: coral;
 }
 
+.page-header {
+    margin-top: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+    color: coral;
+}
+
 .profile-link > .top {
     font-size: 1.4rem;
 }

@@ -12,17 +12,16 @@ session_start();
         <link rel='manifest' href='manifest.json' />
         <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-        <title>Register</title>
+        <title>Login</title>
         <link href='style/custom.css' rel='stylesheet' type='text/css'>
     </head>
     <body class='outer'>
-        <div class='d-flex align-items-center'>
-            <img style='height:5rem;' src='../media/hua_logo.png' alt='' />
-        </div>
         <div class='middle'>
             <div class='d-flex flex-column align-items-center justify-content-center flex-nowrap' style='height:100%'>
                 <!-- Judge the professor for not letting me use bootstrap -->
-                <img style='height:140px;' src='media/hua_logo.png' alt='' />
+                <a href='..'>
+                    <img style='height:140px;' src='../media/hua_logo.png' alt='' />
+                </a>
                 <!-- <div class='fs-14' style='padding-top:1rem;color:#8F9BB3;font-weight:bold;'>Sign In</div> -->
                 
                 <form action='authentication/calls/login.php' method='post' autocomple='off' class='d-flex flex-column auth-form-container' style='padding:1rem 2rem;margin-top:3rem;'>
@@ -40,7 +39,8 @@ session_start();
                         // }
                     ?>
 
-                    <button class='auth-button fullwidth fs-14' style='margin-top:4rem;border-radius:3px;' type='submit'>Login</button>
+                    <button class='auth-button fullwidth fs-14' style='margin-top:4rem;border-radius:3px;' type='submit'>Sign In</button>
+                    <p class='fs-10' style='color:gray;text-align:center;margin-top:2rem;'>Don't have an account? <a class='anchor' href='signup'>Sign Up</a></p>
     
                 </form>
             </div>

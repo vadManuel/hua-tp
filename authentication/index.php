@@ -19,7 +19,9 @@ session_start();
         <div class='middle'>
             <div class='d-flex flex-column align-items-center justify-content-center flex-nowrap' style='height:100%'>
                 <!-- Judge the professor for not letting me use bootstrap -->
-                <img style='height:140px;' src='media/hua_logo.png' alt='' />
+                <a href="..">
+                    <img style='height:140px;' src='../media/hua_logo.png' alt='' />
+                </a>
                 <!-- <div style='width:64px;height:64px;margin-bottom:-67px;z-index:1;border-radius:100%;background-color:white;'></div>
                 <div style='width:70px;height:70px;border-radius:100%;background-color:rgb(8,81,114);'></div> -->
                 <!-- <div class='fs-14' style='padding-top:1rem;color:#8F9BB3;font-weight:bold;'>Sign In</div> -->
@@ -44,7 +46,7 @@ session_start();
                     ?>
 
                     <button class='auth-button fullwidth fs-14' style='margin-top:4rem;border-radius:3px;' type='submit'>Sign In</button>
-                    <p class='fs-10' style='color:gray;text-align:center;margin-top:2rem;'>Don't have an account? <a class='anchor' href='signup'>Sign Up</a></p>
+                    <p class='fs-10' style='color:gray;text-align:center;margin-top:2rem;'>Don't have an account? <a class='anchor' href='/signup'>Sign Up</a></p>
                 </form>
             </div>
         </div>

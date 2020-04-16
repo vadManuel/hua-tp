@@ -92,13 +92,15 @@ $stmt->close();
                             <?php
                                 }
                             ?>
-                            <div class='cart'>
-                                <img style='height:4rem;' src='media/cart.png' alt='' />
-                                <div class='cart-display'>
-                                    <div class='top'>$200.00</div>
-                                    <div class='bottom'>1 item</div>
+                            <a href='../cart/index'>
+                                <div class='cart'>
+                                    <img style='height:4rem;' src='media/cart.png' alt='' />
+                                    <div class='cart-display'>
+                                        <div class='top'>$200.00</div>
+                                        <div class='bottom'>1 item</div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
