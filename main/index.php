@@ -1,6 +1,6 @@
 <?php
 
-include 'utility/util.php';
+include '../utility/util.php';
 
 session_start();
 $con = open_connection();
