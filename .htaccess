@@ -1,4 +1,0 @@
-Options +SymLinksIfOwnerMatch
-RewriteEngine on
-RewriteCond %{REQUEST_URI} ^((?!media|style|utility|calls|uploaded_images).)*$
-RewriteRule . index.php [L]
