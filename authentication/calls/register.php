@@ -34,7 +34,7 @@ if ($stmt = $con->prepare('SELECT user_id, password FROM users WHERE email = ?')
 			$_SESSION['username'] = $_POST['username'];
             $_SESSION['id'] = $con->insert_id;
 
-            header('../../');
+            header('Location: ../../');
         } else {
             echo 'Error building registration statement';
         }

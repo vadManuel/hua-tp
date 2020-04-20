@@ -6,7 +6,7 @@ session_start();
 
 $loggedin = !!isset($_SESSION['loggedin']);
 if (!isset($_SESSION['product']) || !$loggedin) {
-    header('../');
+    header('Location: ../');
 }
 
 
