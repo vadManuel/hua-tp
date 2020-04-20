@@ -4,7 +4,6 @@ include '../utility/util.php';
 
 session_start();
 $con = open_connection();
-setlocale(LC_MONETARY, 'en_US');
 
 $stmt = $con->prepare('SELECT ppt.product_id, ppt.product_name, ppt.image_path, ppt.price, ppt.stock, t.tag_name FROM (SELECT p.product_id as product_id, p.product_name as product_name, p.image_path as image_path, p.price as price, p.stock as stock, pt.tag_id as tag_id FROM products p INNER JOIN product_tags pt ON p.product_tags_id = pt.product_tags_id) ppt INNER JOIN tags t ON ppt.tag_id = t.tag_id');
 $stmt->execute();
@@ -119,7 +118,7 @@ $stmt->close();
                                 <div>
                                     <div class='chip'><?php echo implode('</div><div class="chip">', $_SESSION['product']['tag_names']); ?></div>
                                 </div>
-                                <div class='price' style='font-weight:bold;font-size:1.2rem;margin-left:.15rem;'><?php echo money_format('%n', $_SESSION['product']['price']); ?></div>
+                                <div class='price' style='font-weight:bold;font-size:1.2rem;margin-left:.15rem;'><?php echo '$'.number_format($_SESSION['product']['price'], 2); ?></div>
                             </div>
                             <div class='coupon'>
                                 <div class='tag'>Coupon</div>
@@ -144,7 +143,7 @@ $stmt->close();
                             <tr><th colspan='2' style='border-bottom:1px solid gray;'></th></tr>
                             <tr>
                                 <td>Subtotal</td>
-                                <td><?php echo money_format('%n', $_SESSION['product']['price']); ?></td>
+                                <td><?php echo '$'.number_format($_SESSION['product']['price'], 2); ?></td>
                             </tr>
                             <tr>
                                 <td>Shipping</td>
@@ -152,12 +151,12 @@ $stmt->close();
                             </tr>
                             <tr>
                                 <td>Estimated Tax</td>
-                                <td><?php echo money_format('%n', $_SESSION['product']['price']*.065); ?></td>
+                                <td><?php echo '$'.number_format($_SESSION['product']['price']*.065, 2); ?></td>
                             </tr>
                             <tr><th colspan='2' style='border-bottom:1px solid gray;'></th></tr>
                             <tr>
                                 <td>Total</td>
-                                <td><?php echo money_format('%n', $_SESSION['product']['price']*1.065); ?></td>
+                                <td><?php echo '$'.number_format($_SESSION['product']['price']*1.065, 2); ?></td>
                             </tr>
                         </table>
                         <div style='display:flex;flex-direction:column;justify-content:flex-end;margin:5px;'>

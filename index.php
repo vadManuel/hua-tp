@@ -4,7 +4,6 @@ include './utility/util.php';
 
 session_start();
 $con = open_connection();
-setlocale(LC_MONETARY, 'en_US');
 
 $stmt = $con->prepare('SELECT ppt.product_id, ppt.product_name, ppt.image_path, ppt.price, ppt.stock, t.tag_name FROM (SELECT p.product_id as product_id, p.product_name as product_name, p.image_path as image_path, p.price as price, p.stock as stock, pt.tag_id as tag_id FROM products p INNER JOIN product_tags pt ON p.product_tags_id = pt.product_tags_id) ppt INNER JOIN tags t ON ppt.tag_id = t.tag_id');
 $stmt->execute();
@@ -103,7 +102,7 @@ $stmt->close();
                                     <img style='height:4rem;' src='media/cart.png' alt='' />
                                     <?php if (isset($_SESSION['product'])) { ?>
                                         <div class='cart-display'>
-                                            <div class='top'><?php echo money_format('%n', $_SESSION['product']['price']); ?></div>
+                                            <div class='top'><?php echo '$'.number_format($_SESSION['product']['price'], 2); ?></div>
                                             <div class='bottom'>1 item</div>
                                         </div>
                                     <?php } ?>
@@ -130,7 +129,7 @@ $stmt->close();
                                     <div>
                                         <div class='chip'><?php echo implode('</div><div class="chip">', $product['tag_names']); ?></div>
                                     </div>
-                                    <div class='price'><?php echo money_format('%n', $product['price']); ?></div>
+                                    <div class='price'><?php echo '$'.number_format($product['price'], 2); ?></div>
                                 </div>
                                 <div class='coupon'>
                                     <div class='tag'>Coupon</div>
