@@ -42,26 +42,26 @@ $stmt->close();
 <html>
     <head>
         <meta charset='utf-8'>
-        <link rel='icon' type='image/png' href='media/favicon.png' />
-        <link rel='manifest' href='manifest.json' />
+        <link rel='icon' type='image/png' href='../media/favicon.png' />
+        <link rel='manifest' href='../manifest.json' />
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         
-        <title>Professor Hua's Store</title>
-        <link href='style/custom.css' rel='stylesheet' type='text/css'>
+        <title>Checkout</title>
+        <link href='../style/custom.css' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <div class='d-flex flex-column'>
             <div class='navbar'>
                 <div class='container'>
                     <div class='d-flex align-items-center'>
-                        <img style='height:5rem;' src='media/hua_logo.png' alt='' />
+                        <img style='height:5rem;' src='../media/hua_logo.png' alt='' />
                         <div class='navbar-links'>
-                            <div class='searchbar'>
+                            <!-- <div class='searchbar'>
                                 <input placeholder='fuzzy search' class='search-input' />
                                 <button class='search-button'>
-                                    <img style='height:1.5rem;' src='media/search.png' alt='' />
+                                    <img style='height:1.5rem;' src='../media/search.png' alt='' />
                                 </button>
-                            </div>
+                            </div> -->
                             <!-- <div class='profile-link'>
                                 <div class='top'>Welcome</div>
                                 <a href='login' class='bottom'>Sign In/Up</a>
@@ -85,53 +85,245 @@ $stmt->close();
                                         <div class='bottom'>Sign In/Up</div>
                                     </div>
                                     <div class='dropdown-content'>
-                                        <a href='/authentication/login'>Sign In</a>
-                                        <a href='/authentication/signup'>Sign Up</a>
+                                        <a href='../authentication/login'>Sign In</a>
+                                        <a href='../authentication/signup'>Sign Up</a>
                                     </div>
                                 </div>
                             <?php
                                 }
                             ?>
-                            <a href='../cart/index'>
-                                <div class='cart'>
-                                    <img style='height:4rem;' src='media/cart.png' alt='' />
-                                    <div class='cart-display'>
-                                        <div class='top'>$200.00</div>
-                                        <div class='bottom'>1 item</div>
-                                    </div>
-                                </div>
-                            </a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class='container'>
-                <div class='card-group'>
-                    <?php
-                        foreach ($products as $product) {
-                    ?>
-                        <div class='card'>
-                            <div class='card-image'>
-                                <img src=<?php echo '"'.$product['image_path'].'"'; ?> alt=<?php echo '"'.$product['product_name'].'"'; ?> />
-                            </div>
-                            <div class='card-body'>
-                                <h1>Super Duper Plushy</h1>
+                <div style='
+                    display: flex;
+                    flex-wrap: wrap;
+                    padding: 5px;
+                '>
+                    <div style='
+                        background-color: rgb(243,243,245);
+                        border-radius: 5px;
+                        display:flex;
+                        flex-grow:2;
+                        flex-wrap:wrap;
+                        margin:5px;
+                    '>
+                        <div style='display:flex;justify-content:center;align-items:center;flex-grow:1;'>
+                            <img style='height:200px;max-width:100%;' src=<?php echo '"'.$_SESSION['product']['image_path'].'"'; ?> alt=<?php echo '"'.$_SESSION['product']['product_name'].'"'; ?> />
+                        </div>
+                        <div style='min-height:200px;display:flex;flex-direction:column;justify-content:space-between;flex-grow:2;'>
+                            <div class='card-body' style='padding:0;margin-top:5px;'>
+                                <div style='font-weight:bold;font-size:1.5rem;margin-left:.15rem;padding-bottom:.2rem;'><?php echo $_SESSION['product']['product_name']; ?></div>
                                 <div>
-                                    <div class='chip'><?php echo implode('</div><div class="chip">', $product['tag_names']); ?></div>
+                                    <div class='chip'><?php echo implode('</div><div class="chip">', $_SESSION['product']['tag_names']); ?></div>
                                 </div>
-                                <div class='price'><?php echo money_format('%n', $product['price']); ?></div>
+                                <div class='price' style='font-weight:bold;font-size:1.2rem;margin-left:.15rem;'><?php echo money_format('%n', $_SESSION['product']['price']); ?></div>
                             </div>
                             <div class='coupon'>
                                 <div class='tag'>Coupon</div>
                                 <div class='expiration'>Expires in 3 days 11 hrs</div>
                             </div>
-                            <button>Add to Cart</button>
                         </div>
-                    <?php
-                        }
-                    ?>
+                    </div>
+                    <div class='gotoend' style='
+                        background-color: rgb(243,243,245);
+                        border-radius: 5px;
+                        display:flex;
+                        flex-direction:column;
+                        justify-content:space-between;
+                        flex-grow:1;
+                        margin:5px;
+                        padding:5px;
+                    '>
+                        <table style='flex-grow:1;margin:5px;'>
+                            <tr>
+                                <th colspan='2' style='text-align:left;'>Your Order Total</th>
+                            </tr>
+                            <tr><th colspan='2' style='border-bottom:1px solid gray;'></th></tr>
+                            <tr>
+                                <td>Subtotal</td>
+                                <td><?php echo money_format('%n', $_SESSION['product']['price']); ?></td>
+                            </tr>
+                            <tr>
+                                <td>Shipping</td>
+                                <td>FREE</td>
+                            </tr>
+                            <tr>
+                                <td>Estimated Tax</td>
+                                <td><?php echo money_format('%n', $_SESSION['product']['price']*.065); ?></td>
+                            </tr>
+                            <tr><th colspan='2' style='border-bottom:1px solid gray;'></th></tr>
+                            <tr>
+                                <td>Total</td>
+                                <td><?php echo money_format('%n', $_SESSION['product']['price']*1.065); ?></td>
+                            </tr>
+                        </table>
+                        <div style='display:flex;flex-direction:column;justify-content:flex-end;margin:5px;'>
+                            <p style='font-size:.2rem;padding-left:.15rem'>
+                                By placing your order, you agree to Hua.com's privacy notice, conditions of use and all of the terms found here.
+                            </p>
+                            <button style='
+                                flex-grow:1;
+                                background-color:coral;
+                                color:rgb(243,243,245);
+                                height: 1.75rem;
+                                line-height: 1.75rem;
+                                font-size: .8rem;
+                                border: none;
+                                border-radius: 5px;
+                            '>
+                                Place Your Order
+                            </button>
+                        </div>
+                    </div>
+                    <div style='flex-basis:100%;'></div>
+                    <div style='
+                        background-color: rgb(243,243,245);
+                        border-radius: 5px;
+                        display:flex;
+                        margin:5px;
+                        padding:5px;
+                        flex-grow:1;
+                        flex-wrap:wrap;
+                    '>
+                        <div style='
+                            display:flex;
+                            margin:5px;
+                            flex-grow:1;
+                        '>
+                            <div style='font-weight:bold;font-size:1.1rem;margin-left:.15rem;'>Delivery Address</div>
+                        </div>
+                        <div style='flex-basis:100%;'></div>
+                        <div style='
+                            display:flex;
+                            margin:5px;
+                            flex-grow:1;
+                        '>
+                            <div class='inputfield'>
+                                <div>Street Address</div>
+                                <input />
+                            </div>
+                        </div>
+                        <div style='
+                            display:flex;
+                            margin:5px;
+                            flex-grow:1;
+                        '>
+                            <div class='inputfield'>
+                                <div>Address Line 2</div>
+                                <input />
+                            </div>
+                        </div>
+                        <div style='flex-basis:100%;'></div>
+                        <div style='
+                            display:flex;
+                            margin:5px;
+                            flex-grow:6;
+                        '>
+                            <div class='inputfield'>
+                                <div>City</div>
+                                <input />
+                            </div>
+                        </div>
+                        <div style='
+                            display:flex;
+                            margin:5px;
+                            flex-grow:1;
+                        '>
+                            <div class='inputfield'>
+                                <div>State</div>
+                                <input />
+                            </div>
+                        </div>
+                        <div style='
+                            display:flex;
+                            margin:5px;
+                            flex-grow:1;
+                        '>
+                            <div class='inputfield'>
+                                <div>Zip Code</div>
+                                <input />
+                            </div>
+                        </div>
+                    </div>
+                    <div style='flex-basis:100%;'></div>
+                    <div style='
+                        background-color: rgb(243,243,245);
+                        border-radius: 5px;
+                        display:flex;
+                        margin:5px;
+                        padding:5px;
+                        flex-grow:1;
+                        flex-wrap:wrap;
+                    '>
+                        <div style='
+                            display:flex;
+                            margin:5px;
+                            flex-grow:1;
+                        '>
+                            <div style='font-weight:bold;font-size:1.1rem;margin-left:.15rem;'>Payment</div>
+                        </div>
+                        <div style='flex-basis:100%;'></div>
+                        <div style='
+                            display:flex;
+                            margin:5px;
+                            flex-grow:1;
+                        '>
+                            <div class='inputfield'>
+                                <div>Card Name</div>
+                                <input />
+                            </div>
+                        </div>
+                        <div style='
+                            display:flex;
+                            margin:5px;
+                            flex-grow:1;
+                        '>
+                            <div class='inputfield'>
+                                <div>Card Number</div>
+                                <input />
+                            </div>
+                        </div>
+                        <div style='flex-basis:100%;'></div>
+                        <div style='
+                            display:flex;
+                            margin:5px;
+                            flex-grow:2;
+                        '>
+                            <div class='inputfield'>
+                                <div>Expires</div>
+                                <input id='dateinput' type='text' />
+                            </div>
+                        </div>
+                        <div style='
+                            display:flex;
+                            margin:5px;
+                            flex-grow:1;
+                        '>
+                            <div class='inputfield'>
+                                <div>CVV</div>
+                                <input id='cvv' />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </body>
 </html>
+
+<script>
+    let element = document.getElementById('dateinput');
+    let cvv = document.getElementById('cvv');
+    element.onchange = handleChange;
+
+    function handleChange(e) {
+        let match = e.target.value.match(/^(\d{0,2})(?:[-/\\]?)(\d{0,4})/);
+        if (match[1].length !== 0) {
+            let formatted = `${match[1].padStart(2, '0')}/${match[2].length === 2 ? '20'+match[2] : match[2] }`;
+            element.value = formatted;
+        }
+    }
+</script>
