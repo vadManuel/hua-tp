@@ -90,7 +90,7 @@ $stmt->close();
                                     </div>
                                     <div class='dropdown-content'>
                                         <?php if (isset($_SESSION['product'])) { ?>
-                                            <a href=<?php echo '"'.($loggedin ? './checkout' : './authentication/signin').'"'; ?> class='d-block d-md-none' style='text-decoration:none'>
+                                            <a href=<?php echo '"'.($loggedin ? './checkout' : './authentication/signin.php').'"'; ?> class='d-block d-md-none' style='text-decoration:none'>
                                                 <div class='cart'>
                                                     <img style='height:4rem;' src='./media/cart.png' alt='' />
                                                     <?php if (isset($_SESSION['product'])) { ?>
@@ -102,8 +102,8 @@ $stmt->close();
                                                 </div>
                                             </a>
                                         <?php } ?>
-                                        <a href='./main/profile'>Profile</a>
-                                        <a href='./authentication/calls/logout'>Sign out</a>
+                                        <a href='./main/profile.php'>Profile</a>
+                                        <a href='./authentication/calls/logout.php'>Sign out</a>
                                     </div>
                                 </div>
                             <?php
@@ -116,7 +116,7 @@ $stmt->close();
                                     </div>
                                     <div class='dropdown-content'>
                                         <?php if (isset($_SESSION['product'])) { ?>
-                                            <a href=<?php echo '"'.($loggedin ? './checkout' : './authentication/signin').'"'; ?> class='d-block d-md-none' style='text-decoration:none'>
+                                            <a href=<?php echo '"'.($loggedin ? './checkout' : './authentication/signin.php').'"'; ?> class='d-block d-md-none' style='text-decoration:none'>
                                                 <div class='cart'>
                                                     <img style='height:4rem;' src='./media/cart.png' alt='' />
                                                     <?php if (isset($_SESSION['product'])) { ?>
@@ -128,15 +128,15 @@ $stmt->close();
                                                 </div>
                                             </a>
                                         <?php } ?>
-                                        <a href='./authentication/signin'>Sign In</a>
-                                        <a href='./authentication/signup'>Sign Up</a>
+                                        <a href='./authentication/signin.php'>Sign In</a>
+                                        <a href='./authentication/signup.php'>Sign Up</a>
                                     </div>
                                 </div>
                             <?php
                                 }
                             ?>
                             <?php if (isset($_SESSION['product'])) { ?>
-                                <a href=<?php echo '"'.($loggedin ? './checkout' : './authentication/signin').'"'; ?> class='d-none d-md-block'  style='text-decoration:none'>
+                                <a href=<?php echo '"'.($loggedin ? './checkout' : './authentication/signin.php').'"'; ?> class='d-none d-md-block'  style='text-decoration:none'>
                             <?php } ?>
                                     <div class='cart'>
                                         <img style='height:4rem;' src='./media/cart.png' alt='' />
