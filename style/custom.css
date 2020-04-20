@@ -175,7 +175,11 @@ body {
     align-self: stretch !important;
 }
 
-@media (min-width: 420px) { .auth-form-container{ width: 420px; }}
+.gotoend { order: 1 !important; }
+
+@media (min-width: 420px) {
+    .auth-form-container{ width: 420px; }
+}
 
 @media (min-width: 576px) {
     .container {
@@ -196,6 +200,12 @@ body {
 }
 
 @media (min-width: 768px) {
+    .gotoend { order: 0 !important; }
+    /* .spacer {
+        margin-right: .5rem !important;
+        background-color: red !important;
+    } */
+
     .container {
         max-width: 720px;
     }
@@ -398,7 +408,7 @@ body {
     background-color: rgb(243,243,245);
     border-radius: 5px 0 0 5px;
     font-size: 1rem;
-    padding-left: .5rem;
+    padding: 0 .5rem;
     color: rgb(117,117,117);
 }
 
@@ -409,6 +419,27 @@ body {
     border-radius: 0 5px 5px 0;
     padding: 0 .75rem;
     cursor: pointer;
+}
+
+.inputfield {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.inputfield > div {
+    padding-left: .15rem;
+    color: coral;
+}
+
+.inputfield > input {
+    height: 2.5rem;
+    border: none;
+    background-color: rgb(233,233,235);
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0 .5rem;
+    color: rgb(117,117,117); 
 }
 
 .search-button:active {
