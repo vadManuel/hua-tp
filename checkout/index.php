@@ -3,6 +3,13 @@
 include '../utility/util.php';
 
 session_start();
+
+$loggedin = !!isset($_SESSION['loggedin']);
+if (!isset($_SESSION['product']) || !$loggedin) {
+    header('../');
+}
+
+
 $con = open_connection();
 
 $stmt = $con->prepare('SELECT ppt.product_id, ppt.product_name, ppt.image_path, ppt.price, ppt.stock, t.tag_name FROM (SELECT p.product_id as product_id, p.product_name as product_name, p.image_path as image_path, p.price as price, p.stock as stock, pt.tag_id as tag_id FROM products p INNER JOIN product_tags pt ON p.product_tags_id = pt.product_tags_id) ppt INNER JOIN tags t ON ppt.tag_id = t.tag_id');
@@ -24,8 +31,6 @@ while ($product = $result->fetch_assoc()) {
     }
 }
 echo '<script>console.log('.json_encode($products, JSON_HEX_TAG).');</script>';
-
-$loggedin = !!isset($_SESSION['loggedin']);
 // $stmt = $con->prepare('SELECT activation_code FROM accounts WHERE id = ?');
 // $stmt->bind_param('i', $_SESSION['id']);
 // $stmt->execute();
@@ -53,7 +58,9 @@ $stmt->close();
             <div class='navbar'>
                 <div class='container'>
                     <div class='d-flex align-items-center'>
-                        <img style='height:5rem;' src='../media/hua_logo.png' alt='' />
+                        <a href='../' style='text-decoration:none;'>
+                            <img style='height:5rem;' src='../media/hua_logo.png' alt='' />
+                        </a>
                         <div class='navbar-links'>
                             <!-- <div class='searchbar'>
                                 <input placeholder='fuzzy search' class='search-input' />
@@ -69,11 +76,17 @@ $stmt->close();
                             <?php
                                 if ($loggedin) {
                             ?>
-                                <div class='profile-link'>
-                                    <div class='top'>Welcome</div>
-                                    <a href='login' class='bottom'>
-                                        <?php echo ucfirst($_SESSION['username']); ?>
-                                    </a>
+                                <div class='dropdown'>
+                                    <div class='profile-link'>
+                                        <div class='top'>Welcome</div>
+                                        <a href='login' class='bottom'>
+                                            <?php echo ucfirst($_SESSION['username']); ?>
+                                        </a>
+                                    </div>
+                                    <div class='dropdown-content'>
+                                        <a href='./main/profile'>Profile</a>
+                                        <a href='./authentication/calls/logout'>Sign out</a>
+                                    </div>
                                 </div>
                             <?php
                                 } else {

@@ -3,6 +3,9 @@
 include './utility/util.php';
 
 session_start();
+
+$loggedin = !!isset($_SESSION['loggedin']);
+
 $con = open_connection();
 
 $stmt = $con->prepare('SELECT ppt.product_id, ppt.product_name, ppt.image_path, ppt.price, ppt.stock, t.tag_name FROM (SELECT p.product_id as product_id, p.product_name as product_name, p.image_path as image_path, p.price as price, p.stock as stock, pt.tag_id as tag_id FROM products p INNER JOIN product_tags pt ON p.product_tags_id = pt.product_tags_id) ppt INNER JOIN tags t ON ppt.tag_id = t.tag_id');
@@ -26,18 +29,21 @@ while ($product = $result->fetch_assoc()) {
 }
 echo '<script>console.log('.json_encode($products, JSON_HEX_TAG).');</script>';
 
-$_SESSION['product'] = null;
+
+// unset($_SESSION['product']);
 if (isset($_POST['product_id'])) {
     $_SESSION['product'] = $products[$_POST['product_id']];
 }
 
-$loggedin = !!isset($_SESSION['loggedin']);
-// $stmt = $con->prepare('SELECT activation_code FROM accounts WHERE id = ?');
-// $stmt->bind_param('i', $_SESSION['id']);
-// $stmt->execute();
-// $stmt->bind_result($activation_code);
-// $stmt->fetch();
-// $stmt->close();
+function similarSearch($item) {
+    return !!preg_match('/'.$_POST['search'].'/i', $item['product_name']);
+}
+
+if (isset($_POST['search'])) {
+    $products = array_filter($products, 'similarSearch');
+}
+
+$_POST = array();
 
 $stmt->close();
 
@@ -58,12 +64,12 @@ $stmt->close();
         <div class='d-flex flex-column'>
             <div class='navbar'>
                 <div class='container'>
-                    <div class='d-flex align-items-center'>
-                        <img style='height:5rem;' src='media/hua_logo.png' alt='' />
+                    <form method='post' class='d-flex align-items-center'>
+                        <img class='navbar-logo' src='media/hua_logo.png' alt='' />
                         <div class='navbar-links'>
                             <div class='searchbar'>
-                                <input placeholder='fuzzy search' class='search-input' />
-                                <button class='search-button'>
+                                <input placeholder='exact match search' name='search' class='search-input' autocomplete='off' />
+                                <button type='submit' class='search-button'>
                                     <img style='height:1.5rem;' src='media/search.png' alt='' />
                                 </button>
                             </div>
@@ -71,15 +77,34 @@ $stmt->close();
                                 <div class='top'>Welcome</div>
                                 <a href='login' class='bottom'>Sign In/Up</a>
                             </div> -->
-                           
+                        
                             <?php
                                 if ($loggedin) {
                             ?>
-                                <div class='profile-link'>
-                                    <div class='top'>Welcome</div>
-                                    <a href='login' class='bottom'>
-                                        <?php echo ucfirst($_SESSION['username']); ?>
-                                    </a>
+                                <div class='dropdown'>
+                                    <div class='profile-link'>
+                                        <div class='top'>Welcome</div>
+                                        <a href='login' class='bottom'>
+                                            <?php echo ucfirst($_SESSION['username']); ?>
+                                        </a>
+                                    </div>
+                                    <div class='dropdown-content'>
+                                        <?php if (isset($_SESSION['product'])) { ?>
+                                            <a href=<?php echo '"'.($loggedin ? './checkout' : './authentication/signin').'"'; ?> class='d-block d-md-none' style='text-decoration:none'>
+                                                <div class='cart'>
+                                                    <img style='height:4rem;' src='./media/cart.png' alt='' />
+                                                    <?php if (isset($_SESSION['product'])) { ?>
+                                                        <div class='cart-display'>
+                                                            <div class='top'><?php echo '$'.number_format($_SESSION['product']['price'], 2); ?></div>
+                                                            <div class='bottom'>1 item</div>
+                                                        </div>
+                                                    <?php } ?>
+                                                </div>
+                                            </a>
+                                        <?php } ?>
+                                        <a href='./main/profile'>Profile</a>
+                                        <a href='./authentication/calls/logout'>Sign out</a>
+                                    </div>
                                 </div>
                             <?php
                                 } else {
@@ -90,26 +115,43 @@ $stmt->close();
                                         <div class='bottom'>Sign In/Up</div>
                                     </div>
                                     <div class='dropdown-content'>
-                                        <a href='./authentication/login'>Sign In</a>
+                                        <?php if (isset($_SESSION['product'])) { ?>
+                                            <a href=<?php echo '"'.($loggedin ? './checkout' : './authentication/signin').'"'; ?> class='d-block d-md-none' style='text-decoration:none'>
+                                                <div class='cart'>
+                                                    <img style='height:4rem;' src='./media/cart.png' alt='' />
+                                                    <?php if (isset($_SESSION['product'])) { ?>
+                                                        <div class='cart-display'>
+                                                            <div class='top'><?php echo '$'.number_format($_SESSION['product']['price'], 2); ?></div>
+                                                            <div class='bottom'>1 item</div>
+                                                        </div>
+                                                    <?php } ?>
+                                                </div>
+                                            </a>
+                                        <?php } ?>
+                                        <a href='./authentication/signin'>Sign In</a>
                                         <a href='./authentication/signup'>Sign Up</a>
                                     </div>
                                 </div>
                             <?php
                                 }
                             ?>
-                            <a href='./checkout' style='text-decoration:none'>
-                                <div class='cart'>
-                                    <img style='height:4rem;' src='media/cart.png' alt='' />
-                                    <?php if (isset($_SESSION['product'])) { ?>
-                                        <div class='cart-display'>
-                                            <div class='top'><?php echo '$'.number_format($_SESSION['product']['price'], 2); ?></div>
-                                            <div class='bottom'>1 item</div>
-                                        </div>
-                                    <?php } ?>
-                                </div>
-                            </a>
+                            <?php if (isset($_SESSION['product'])) { ?>
+                                <a href=<?php echo '"'.($loggedin ? './checkout' : './authentication/signin').'"'; ?> class='d-none d-md-block'  style='text-decoration:none'>
+                            <?php } ?>
+                                    <div class='cart'>
+                                        <img style='height:4rem;' src='./media/cart.png' alt='' />
+                                        <?php if (isset($_SESSION['product'])) { ?>
+                                            <div class='cart-display'>
+                                                <div class='top'><?php echo '$'.number_format($_SESSION['product']['price'], 2); ?></div>
+                                                <div class='bottom'>1 item</div>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                            <?php if (isset($_SESSION['product'])) { ?>
+                                </a>
+                            <?php } ?>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class='container'>
@@ -119,23 +161,23 @@ $stmt->close();
                             foreach ($products as $product) {
                         ?>
                             <div class='card'>
-                                <div class='card-image'>
-                                    <img src=<?php echo '"'.$product['image_path'].'"'; ?> alt=<?php echo '"'.$product['product_name'].'"'; ?> />
-                                </div>
                                 <div class='card-body'>
-                                    <h1>
-                                        <?php echo $product['product_name']; ?>
-                                    </h1>
+                                    <div class='card-image'>
+                                        <img src=<?php echo '"'.$product['image_path'].'"'; ?> alt=<?php echo '"'.$product['product_name'].'"'; ?> />
+                                    </div>
+                                    <h1><?php echo $product['product_name']; ?></h1>
                                     <div>
                                         <div class='chip'><?php echo implode('</div><div class="chip">', $product['tag_names']); ?></div>
                                     </div>
                                     <div class='price'><?php echo '$'.number_format($product['price'], 2); ?></div>
                                 </div>
-                                <div class='coupon'>
-                                    <div class='tag'>Coupon</div>
-                                    <div class='expiration'>Expires in 3 days 11 hrs</div>
+                                <div class='card-footer'>
+                                    <div class='coupon'>
+                                        <div class='tag'>Coupon</div>
+                                        <div class='expiration'>Expires in 3 days 11 hrs</div>
+                                    </div>
+                                    <button type='submit' name='product_id' value=<?php echo '"'.$product['product_id'].'"'; ?>>Add to Cart</button>
                                 </div>
-                                <button type='submit' name='product_id' value=<?php echo '"'.$product['product_id'].'"'; ?>>Add to Cart</button>
                             </div>
                         <?php
                             }
