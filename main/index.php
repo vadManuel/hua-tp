@@ -43,7 +43,7 @@ $stmt->close();
     <head>
         <meta charset='utf-8'>
         <link rel='icon' type='image/png' href='media/favicon.png' />
-        <link rel='manifest' href='manifest.json' />
+        <link rel='manifest' href='../manifest.json' />
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         
         <title>Professor Hua's Store</title>
@@ -54,12 +54,12 @@ $stmt->close();
             <div class='navbar'>
                 <div class='container'>
                     <div class='d-flex align-items-center'>
-                        <img style='height:5rem;' src='media/hua_logo.png' alt='' />
+                        <img style='height:5rem;' src='./media/hua_logo.png' alt='' />
                         <div class='navbar-links'>
                             <div class='searchbar'>
                                 <input placeholder='fuzzy search' class='search-input' />
                                 <button class='search-button'>
-                                    <img style='height:1.5rem;' src='media/search.png' alt='' />
+                                    <img style='height:1.5rem;' src='./media/search.png' alt='' />
                                 </button>
                             </div>
                             <!-- <div class='profile-link'>
@@ -92,7 +92,7 @@ $stmt->close();
                             <?php
                                 }
                             ?>
-                            <a href='../cart/index'>
+                            <a href='../cart'>
                                 <div class='cart'>
                                     <img style='height:4rem;' src='media/cart.png' alt='' />
                                     <div class='cart-display'>
@@ -115,7 +115,7 @@ $stmt->close();
                                 <img src=<?php echo '"'.$product['image_path'].'"'; ?> alt=<?php echo '"'.$product['product_name'].'"'; ?> />
                             </div>
                             <div class='card-body'>
-                                <h1>Super Duper Plushy</h1>
+                                <h1><?php echo $product['product_name']; ?></h1>
                                 <div>
                                     <div class='chip'><?php echo implode('</div><div class="chip">', $product['tag_names']); ?></div>
                                 </div>
