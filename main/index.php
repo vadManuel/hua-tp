@@ -6,7 +6,14 @@ session_start();
 $con = open_connection();
 setlocale(LC_MONETARY, 'en_US');
 
-$stmt = $con->prepare('SELECT ppt.product_id, ppt.product_name, ppt.image_path, ppt.price, ppt.stock, t.tag_name FROM (SELECT p.product_id as product_id, p.product_name as product_name, p.image_path as image_path, p.price as price, p.stock as stock, pt.tag_id as tag_id FROM products p INNER JOIN product_tags pt ON p.product_tags_id = pt.product_tags_id) ppt INNER JOIN tags t ON ppt.tag_id = t.tag_id');
+$stmt = $con->prepare('SELECT ppt.product_id, ppt.product_name, ppt.image_path, ppt.price, ppt.stock, t.tag_name, c.discount, c.expires_on 
+FROM 
+	(SELECT p.product_id as product_id, p.product_name as product_name, p.image_path as image_path, p.price as price, p.stock as stock, pt.tag_id as tag_id 
+     FROM products p 
+     INNER JOIN product_tags pt ON p.product_tags_id = pt.product_tags_id) 
+ppt INNER JOIN tags t ON ppt.tag_id = t.tag_id
+INNER JOIN coupons c on ppt.product_id = c.product_id');
+
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -20,6 +27,8 @@ while ($product = $result->fetch_assoc()) {
             'image_path' => $product['image_path'],
             'price' => $product['price'],
             'stock' => $product['stock'],
+            'discount' => $product['discount'],
+            'expires_on' => $product['expires_on'],
             'tag_names' => array($product['tag_name'])
         );
     }
@@ -119,12 +128,13 @@ $stmt->close();
                                 <div>
                                     <div class='chip'><?php echo implode('</div><div class="chip">', $product['tag_names']); ?></div>
                                 </div>
-                                <div class='price'><?php echo money_format('%n', $product['price']); ?></div>
-                            </div>
-                            <div class='coupon'>
-                                <div class='tag'>Coupon</div>
-                                <div class='expiration'>Expires in 3 days 11 hrs</div>
-                            </div>
+                                <div class='price'><?php echo money_format('%n', $product['price']); ?>$</div>
+                            </div>          
+                                <div class='coupon'>
+                                    <div class='tag'> - <?php echo " ".$product['discount']." "; ?>$</div>
+                                    <div class='expiration'> Expires on: <?php echo " ".$product['expires_on']; ?> </div>
+                                </div>
+                                
                             <button>Add to Cart</button>
                         </div>
                     <?php
