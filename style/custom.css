@@ -13,11 +13,24 @@ html {
     outline: 0;
 }
 
+a:link{
+    text-decoration: none;
+}
+a:visited{
+    text-decoration: none;
+}
+
 body {
     height: 100%;
     width: 100%;
     padding: 0;
     margin: 0;
+}
+
+.creation{
+    font-size: 72;
+    color: blue;
+    position: left;t 
 }
 
 .container {
@@ -307,6 +320,7 @@ body {
 
 .fullwidth {
     width: 100%;
+    font
 }
 
 .fs-05 {

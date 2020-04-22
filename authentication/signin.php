@@ -46,7 +46,7 @@ session_start();
                     ?>
 
                     <button class='auth-button fullwidth fs-14' style='margin-top:4rem;border-radius:3px;' type='submit'>Sign In</button>
-                    <p class='fs-10' style='color:gray;text-align:center;margin-top:2rem;'>Don't have an account? <a class='anchor' href='/signup'>Sign Up</a></p>
+                    <p class='fs-10' style='color:gray;text-align:center;margin-top:2rem;'>Don't have an account? <a class='anchor' href='./signup.php'>Sign Up</a></p>
                 </form>
             </div>
         </div>
