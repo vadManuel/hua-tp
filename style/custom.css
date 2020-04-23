@@ -577,7 +577,7 @@ body {
     padding: 10px 0;
 }
 
-.card-footer > button {
+.card-footer button {
     border: none;
     padding: 12px;
     color: rgb(243,243,245);
@@ -589,7 +589,7 @@ body {
     border-radius: 0 0 5px 5px;
 }
 
-.card-footer > button:hover {
+.card-footer button:hover {
     opacity: 0.7;
 }
 
