@@ -1,6 +1,6 @@
 <?php
 
-include '../../utility/util.php';
+include '../utility/util.php';
 
 session_start();
 
@@ -11,13 +11,13 @@ if ( !isset($_POST['email'], $_POST['password']) ) {
 	exit;
 }
 
-if ($stmt = $con->prepare('SELECT user_id, password, username FROM users WHERE email = ?')) {
+if ($stmt = $con->prepare('SELECT user_id, password, username, address_1, address_2, zip, city, `state` FROM users WHERE email = ?')) {
     $stmt->bind_param('s', $_POST['email']);
     $stmt->execute();
     
 	$stmt->store_result();
 	if ($stmt->num_rows > 0) {  // check if account actually exists
-		$stmt->bind_result($id, $password, $username);
+		$stmt->bind_result($id, $password, $username, $address_1, $address_2, $zip, $city, $state);
         $stmt->fetch();
         
 		if (password_verify($_POST['password'], $password)) {
@@ -26,6 +26,11 @@ if ($stmt = $con->prepare('SELECT user_id, password, username FROM users WHERE e
             unset($_SESSION['display_error']);
 			$_SESSION['loggedin'] = TRUE;
 			$_SESSION['username'] = $username;
+			$_SESSION['address_1'] = $address_1;
+			$_SESSION['address_2'] = $address_2;
+			$_SESSION['zip'] = $zip;
+			$_SESSION['city'] = $city;
+			$_SESSION['state'] = $state;
             $_SESSION['id'] = $id;
 
             header('Location: ../');

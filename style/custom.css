@@ -317,10 +317,8 @@ body {
     text-decoration: none;
 }
 
-
 .fullwidth {
     width: 100%;
-    font
 }
 
 .fs-05 {
@@ -511,6 +509,10 @@ body {
 .cart {
     display: flex;
     flex-direction: row;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    text-align: left;
 }
 
 .cart-display {
@@ -617,7 +619,7 @@ body {
     background: coral;
     position: relative;
     padding-left: 5px;
-    width: 6rem;
+    width: 9rem;
 }
 
 .coupon > .tag:before {

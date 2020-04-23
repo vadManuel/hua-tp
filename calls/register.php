@@ -25,12 +25,10 @@ if ($stmt = $con->prepare('SELECT user_id, password FROM users WHERE email = ?')
         // TODO: Pass error to screen
         echo 'Account already exists!';
         
-        
     } else {
-        if ($stmt = $con->prepare('INSERT INTO users (username, password, email, activation_code) VALUES (?, ?, ?, ?)')) {
+        if ($stmt = $con->prepare('INSERT INTO users (username, password, email) VALUES (?, ?, ?, ?)')) {
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $activation_code = uniqid();
-            $stmt->bind_param('ssss', $_POST['username'], $password, $_POST['email'], $activation_code);
+            $stmt->bind_param('ssss', $_POST['username'], $password, $_POST['email']);
 
             $stmt->execute();
             $id = $con->insert_id;

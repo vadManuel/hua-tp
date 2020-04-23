@@ -1,15 +1,15 @@
 <?php
 
-include 'utility/util.php';
+include '../utility/util.php';
 
 session_start();
 
 $con = open_connection();
 
-$stmt = $con->prepare('SELECT password, email, activation_code FROM users WHERE user_id = ?');
+$stmt = $con->prepare('SELECT password, email FROM users WHERE user_id = ?');
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
-$stmt->bind_result($password, $email, $activation_code);
+$stmt->bind_result($password, $email);
 $stmt->fetch();
 $stmt->close();
 
@@ -31,7 +31,7 @@ $stmt->close();
             <div>
                 <h1>Hua</h1>
                 <a href='../'>Home</a>
-                <a href='../call/logout.php'>Logout</a>
+                <a href='../calls/logout.php'>Logout</a>
             </div>
         </nav>
         <div>
@@ -52,9 +52,6 @@ $stmt->close();
                     </tr>
                     <tr>
                         <td>Email:</td><td><?=$email?></td>
-                    </tr>
-                    <tr>
-                        <td>Activation Code:</td><td><?=$activation_code?></td>
                     </tr>
                 </table>
             </div>

@@ -19,12 +19,12 @@ session_start();
         <div class='middle'>
             <div class='d-flex flex-column align-items-center justify-content-center flex-nowrap' style='height:100%'>
                 <!-- Judge the professor for not letting me use bootstrap -->
-                <a href='../'>
+                <a href='../' style='text-decoration:none;'>
                     <img style='height:140px;' src='../media/hua_logo.png' alt='' />
                 </a>
                 <!-- <div class='fs-14' style='padding-top:1rem;color:#8F9BB3;font-weight:bold;'>Sign In</div> -->
                 
-                <form action='./calls/register.php' method='post' autocomple='off' class='d-flex flex-column auth-form-container' style='padding:1rem 2rem;margin-top:3rem;'>
+                <form action='../calls/register.php' method='post' autocomple='off' class='d-flex flex-column auth-form-container' style='padding:1rem 2rem;margin-top:3rem;'>
                     <input class='auth-input fullwidth fs-12' type='username' name='username' placeholder='+ Username' id='username' required>
                     <input class='auth-input fullwidth fs-12' style='margin-top:1rem;' type='email' name='email' placeholder='+ Email' id='email' required>
                     <input class='auth-input fullwidth fs-12' style='margin-top:1rem;' type='password' name='password' placeholder='+ Password' id='password' minlength='8' maxlength='20' required>

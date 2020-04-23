@@ -112,7 +112,6 @@ We get to create an online discount store by utilizing what we learned in class.
 </tr>
 <tr>
   <td>5</td>
-  <td><code>activation_code</code></td>
   <td><code>varchar(100)</code></td>
   <td></td>
   <td><code>false</code></td>
