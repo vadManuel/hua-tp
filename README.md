@@ -33,30 +33,36 @@ We get to create an online discount store by utilizing what we learned in class.
 ### Contents
 <pre>
 .
-├── .htaccess
-├── index.php
 ├── 404.html
+├── index.php
 ├── manifest.json
-├── authentication
-│   ├── calls
-│   │   ├── activate.php
-│   │   ├── login.php
-│   │   ├── logout.php
-│   │   └── register.php
-│   ├── index.php
+├── auth
 │   ├── reset.php
+│   ├── signin.php
 │   └── signup.php
+├── calls
+│   ├── add_to_cart.php
+│   ├── complete_order.php
+│   ├── login.php
+│   ├── logout.php
+│   └── register.php
+├── docs
+│   ├── erd_1.pdf
+│   ├── erd_2.pdf
+│   └── team_hua_dd.pdf
 ├── main
-│   ├── index.php
+│   ├── checkout.php
+│   ├── create.php
 │   └── profile.php
-├── utility
-│   ├── buildMessage.php
-│   └── util.php
 ├── media
+│   ├── cart.png
 │   ├── favicon.png
-│   └── hua_logo.png
-└── style
-    └── custom.css
+│   ├── hua_logo.png
+│   └── search.png
+├── style
+│   └── custom.css
+└── utility
+    └── util.php
 </pre>
 
 ### Working Schemas
