@@ -25,9 +25,11 @@ if ($stmt = $con->prepare('SELECT user_id, password FROM users WHERE email = ?')
         $_SESSION['display_error'] = 'Account already exists!';
         header('Location: ../auth/signup.php');
     } else {
-        if ($stmt = $con->prepare('INSERT INTO users (username, password, email) VALUES (?, ?, ?, ?)')) {
+        $stmt->close();
+
+        if ($stmt = $con->prepare('INSERT INTO users (username, password, email) VALUES (?, ?, ?)')) {
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $stmt->bind_param('ssss', $_POST['username'], $password, $_POST['email']);
+            $stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
 
             $stmt->execute();
             $id = $con->insert_id;
@@ -39,13 +41,13 @@ if ($stmt = $con->prepare('SELECT user_id, password FROM users WHERE email = ?')
             $_SESSION['username'] = $_POST['username'];
             $_SESSION['id'] = $id;
 
+            $stmt->close();
+
             header('Location: ../');
-            
         } else {
             echo 'Error building registration statement';
         }
     }
-    $stmt->close();
 } else {
     echo 'Error building user exists check statement.';
 }
