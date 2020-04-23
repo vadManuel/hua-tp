@@ -6,11 +6,6 @@ session_start();
 
 $con = open_connection();
 
-echo json_encode($_SESSION, JSON_HEX_TAG);
-echo '<br/>';
-echo json_encode($_POST, JSON_HEX_TAG);
-echo '<br/>';
-
 if (!isset($_SESSION['product']['coupon_id'])) {
     if ($create_coupon = $con->prepare('INSERT INTO coupons (discount, product_id) VALUES (?,?)')) {
         $new_discount = $_SESSION['product']['price']*.01;
@@ -19,10 +14,9 @@ if (!isset($_SESSION['product']['coupon_id'])) {
         $id = $con->insert_id;
         $_SESSION['product']['coupon_id'] = $id;
         $create_coupon->close();
-
-        echo 'Created coupon<br/>';
     } else {
         echo 'Error building coupon creation statement';
+        exit();
     }
 } else {
     if ($update_coupon = $con->prepare('UPDATE coupons SET discount = discount + ? WHERE coupon_id = ?')) {
@@ -30,10 +24,9 @@ if (!isset($_SESSION['product']['coupon_id'])) {
         $update_coupon->bind_param('di', $add_discount, $_SESSION['product']['coupon_id']);
         $update_coupon->execute();
         $update_coupon->close();
-
-        echo 'Updated coupon<br/>';
     } else {
         echo 'Error building coupon update statement';
+        exit();
     }
 }
 
@@ -41,8 +34,6 @@ if ($update_order = $con->prepare('UPDATE orders SET coupon_id = ?, purchase_amo
     $update_order->bind_param('idi', $_SESSION['product']['coupon_id'], $_POST['purchase_amount'], $_SESSION['id']);
     $update_order->execute();
     $update_order->close();
-
-    echo 'Succesfully updated order.';
 
     if (!isset($_SESSION['address_1']) ||
         $_SESSION['address_1'] != $_POST['address_1']
@@ -56,20 +47,19 @@ if ($update_order = $con->prepare('UPDATE orders SET coupon_id = ?, purchase_amo
             $update_address->execute();
             $update_address->close();
 
-            echo 'Succesfully added address.';
         } else {
             echo 'Error building address statement';
-            // exit();
+            exit();
         } 
     }
 } else {
     echo 'Error building update order statement';
-    // exit();
+    exit();
 }
 
 $con->close();
 unset($_SESSION['product']);
 
-echo 'Succesfully placed order. <a href="../">Homepage</a><br/>';
+header('Location: ../main/success.php');
 
 ?>

@@ -123,7 +123,7 @@ if (!isset($_SESSION['product']) || !$loggedin) {
                                 <tr><th colspan='2' style='border-bottom:1px solid gray;'></th></tr>
                                 <tr>
                                     <td>Total</td>
-                                    <td><?php echo '$'.number_format($_SESSION['product']['price']*1.065-$_SESSION['product']['discount'], 2); ?></td>
+                                    <td><?php echo '$'.number_format(($_SESSION['product']['price']*1.065-$_SESSION['product']['discount']), 2); ?></td>
                                 </tr>
                             </table>
                             <div style='display:flex;flex-direction:column;justify-content:flex-end;margin:5px;'>
