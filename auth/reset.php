@@ -12,7 +12,7 @@ session_start();
         <link rel='manifest' href='../manifest.json' />
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         
-        <title>My Account</title>
+        <title>Reset Password</title>
         <link href='../style/custom.css' rel='stylesheet' type='text/css'>
     </head>
     <body class='outer'>
