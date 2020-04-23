@@ -8,12 +8,28 @@ $loggedin = !!isset($_SESSION['loggedin']);
 
 $con = open_connection();
 
-$stmt = $con->prepare('SELECT ppt.product_id, ppt.product_name, ppt.image_path, ppt.price, ppt.stock, t.tag_name, c.coupon_id, c.discount, c.expires_on, c.created_on
+$stmt = $con->prepare('SELECT product_id, coupon_id, discount, created_on FROM coupons');
+$stmt->execute();
+$result = $stmt->get_result();
+
+// remap to use product_id as key
+$coupons = array();
+while ($coupon = $result->fetch_assoc()) {
+    $coupons[$coupon['product_id']] = array(
+        'product_id' => $coupon['product_id'], 
+        'coupon_id' => $coupon['coupon_id'],
+        'discount' => $coupon['discount'],
+        'created_on' => $coupon['created_on']
+    );
+}
+
+$stmt->close();
+
+$stmt = $con->prepare('SELECT ppt.product_id, ppt.product_name, ppt.image_path, ppt.price, ppt.stock, t.tag_name
 FROM (SELECT p.product_id as product_id, p.product_name as product_name, p.image_path as image_path, p.price as price, p.stock as stock, pt.tag_id as tag_id 
      FROM products p 
      INNER JOIN product_tags pt ON p.product_tags_id = pt.product_tags_id) ppt
-INNER JOIN tags t ON ppt.tag_id = t.tag_id
-INNER JOIN coupons c ON ppt.product_id = c.product_id');
+INNER JOIN tags t ON ppt.tag_id = t.tag_id');
 
 $stmt->execute();
 $result = $stmt->get_result();
@@ -31,10 +47,9 @@ while ($product = $result->fetch_assoc()) {
             'price' => $product['price'],
             'stock' => $product['stock'],
             'tag_names' => array($product['tag_name']),
-            'coupon_id' => $product['coupon_id'],
-            'discount' => $product['discount'],
-            'expires_on' => $product['expires_on'],
-            'created_on' => $product['created_on']
+            'coupon_id' => $coupons[$product['product_id']]['coupon_id'],
+            'discount' => $coupons[$product['product_id']]['discount'],
+            'created_on' => $coupons[$product['product_id']]['created_on']
         );
     }
 }
@@ -203,7 +218,8 @@ $_POST = array();
                                         <div class='tag'> Savings <?php echo '$'.number_format($product['discount'], 2); ?></div>
                                         <div class='expiration'> Expires in <?php
                                             $start = new DateTime();
-                                            $end = new DateTime($product['expires_on']);
+                                            $end = new DateTime($product['created_on']);
+                                            $end = $end->modify('+7 days');
                                             $diff = $start->diff($end);
                                             echo $diff->format('%d days');
                                         ?> </div>

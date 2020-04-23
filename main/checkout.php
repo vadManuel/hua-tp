@@ -80,7 +80,8 @@ if (!isset($_SESSION['product']) || !$loggedin) {
                                         <div class='tag' style='width:13rem;'>Current Savings <?php echo '$'.number_format($_SESSION['product']['discount'], 2); ?></div>
                                         <div class='expiration'> Expires in <?php
                                             $start = new DateTime();
-                                            $end = new DateTime($_SESSION['product']['expires_on']);
+                                            $end = new DateTime($_SESSION['product']['created_on']);
+                                            $end = $end->modify('+7 days');
                                             $diff = $start->diff($end);
                                             echo $diff->format('%d days');
                                         ?> </div>
@@ -122,7 +123,7 @@ if (!isset($_SESSION['product']) || !$loggedin) {
                                 <tr><th colspan='2' style='border-bottom:1px solid gray;'></th></tr>
                                 <tr>
                                     <td>Total</td>
-                                    <td><?php echo '$'.number_format($_SESSION['product']['price']*1.065, 2); ?></td>
+                                    <td><?php echo '$'.number_format($_SESSION['product']['price']*1.065-$_SESSION['product']['discount'], 2); ?></td>
                                 </tr>
                             </table>
                             <div style='display:flex;flex-direction:column;justify-content:flex-end;margin:5px;'>
