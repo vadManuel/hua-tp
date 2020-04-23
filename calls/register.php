@@ -1,7 +1,7 @@
 <?php
 
-include '../../utility/util.php';
-include '../../utility/buildMessage.php';
+include '../utility/util.php';
+include '../utility/buildMessage.php';
 
 session_start();
 
@@ -25,6 +25,8 @@ if ($stmt = $con->prepare('SELECT user_id, password FROM users WHERE email = ?')
     if ($stmt->num_rows > 0) {
         // TODO: Pass error to screen
         echo 'Account already exists!';
+        
+        
     } else {
         if ($stmt = $con->prepare('INSERT INTO users (username, password, email, activation_code) VALUES (?, ?, ?, ?)')) {
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -34,27 +36,15 @@ if ($stmt = $con->prepare('SELECT user_id, password FROM users WHERE email = ?')
             $stmt->execute();
             $id = $con->insert_id;
             
-            $from    = 'noreply@localhost.com';
-            $subject = 'Account Activation Required';
-            $headers = 'From: '.$from."\r\n".'Reply-To: '.$from."\r\n".'X-Mailer: PHP/'.phpversion()."\r\n".'MIME-Version: 1.0'."\r\n".'Content-Type: text/html; charset=UTF-8'."\r\n";
-            $activation_link = 'http://localhost'.$GLOBALS['prefix'].'/activate.php?email='.$_POST['email'].'&code='.$activation_code;
+            session_regenerate_id();
 
-            $message = buildMessage($activation_link, $_POST['username']);
-                
-            $isMailed = mail($_POST['email'], $subject, $message, $headers);
+            $_SESSION['display_error'] = null;
+            $_SESSION['loggedin'] = TRUE;
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['id'] = $id;
+
+            header('Location: ../index');
             
-            if ($isMailed) {
-                session_regenerate_id();
-
-                $_SESSION['display_error'] = null;
-                $_SESSION['loggedin'] = TRUE;
-                $_SESSION['username'] = $_POST['username'];
-                $_SESSION['id'] = $id;
-
-                header('Location: ../../index');
-            } else {
-                echo 'Failed to send email to '.$_POST['email'].'.';
-            }
         } else {
             echo 'Error building registration statement';
         }

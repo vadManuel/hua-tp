@@ -12,7 +12,7 @@ session_start();
         <link rel='manifest' href='manifest.json' />
         <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-        <title>Login</title>
+        <title>Register</title>
         <link href='style/custom.css' rel='stylesheet' type='text/css'>
     </head>
     <body class='outer'>
@@ -24,8 +24,9 @@ session_start();
                 </a>
                 <!-- <div class='fs-14' style='padding-top:1rem;color:#8F9BB3;font-weight:bold;'>Sign In</div> -->
                 
-                <form action='authentication/calls/login.php' method='post' autocomple='off' class='d-flex flex-column auth-form-container' style='padding:1rem 2rem;margin-top:3rem;'>
+                <form action='/calls/register.php' method='post' autocomple='off' class='d-flex flex-column auth-form-container' style='padding:1rem 2rem;margin-top:3rem;'>
                     <input class='auth-input fullwidth fs-12' type='username' name='username' placeholder='+ Username' id='username' required>
+                    <input class='auth-input fullwidth fs-12' style='margin-top:1rem;' type='email' name='email' placeholder='+ Email' id='email' required>
                     <input class='auth-input fullwidth fs-12' style='margin-top:1rem;' type='password' name='password' placeholder='+ Password' id='password' minlength='8' maxlength='20' required>
 
                     <?php
@@ -39,22 +40,23 @@ session_start();
                         // }
                     ?>
 
-                    <button class='auth-button fullwidth fs-14' style='margin-top:4rem;border-radius:3px;' type='submit'>Sign In</button>
-                    <p class='fs-10' style='color:gray;text-align:center;margin-top:2rem;'>Don't have an account? <a class='anchor' href='signup'>Sign Up</a></p>
-    
+                    <button class='auth-button fullwidth fs-14' style='margin-top:4rem;border-radius:3px;' type='submit'>Sign Up</button>
+                    <p class='fs-10' style='color:gray;text-align:center;margin-top:2rem;'>Already have an account? <a class='anchor' href='login'>Sign In</a></p>
                 </form>
             </div>
         </div>
     </body>
     <!-- <body>
         <div class='container'>
-            <h1>Login</h1>
-            <form action='login.php' method='post' autocomplete='off'>
+            <h1>Register</h1>
+            <form action='register.php' method='post' autocomplete='off'>
                 <input type='text' name='username' placeholder='Username' id='username' required>
+                <input type='email' name='email' placeholder='Email' id='email' required>
                 <input type='password' name='password' placeholder='Password' id='password' minlength='8' maxlength='20' required>
 
-                <input type='submit' value='Sign In'>
+                <input type='submit' value='Register'>
 
+                <p>Already have an account? <a href='./'>Sign In</a></p>
             </form>
         </div>
     </body> -->
