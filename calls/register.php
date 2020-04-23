@@ -22,9 +22,8 @@ if ($stmt = $con->prepare('SELECT user_id, password FROM users WHERE email = ?')
     $stmt->store_result();
     
     if ($stmt->num_rows > 0) {
-        // TODO: Pass error to screen
-        echo 'Account already exists!';
-        
+        $_SESSION['display_error'] = 'Account already exists!';
+        header('Location: ../auth/signup.php');
     } else {
         if ($stmt = $con->prepare('INSERT INTO users (username, password, email) VALUES (?, ?, ?, ?)')) {
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);

@@ -52,3 +52,5 @@ session_start();
         </div>
     </body>
 </html>
+
+<?php unset($_SESSION['display_error']); ?>

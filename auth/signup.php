@@ -29,15 +29,18 @@ session_start();
                     <input class='auth-input fullwidth fs-12' style='margin-top:1rem;' type='email' name='email' placeholder='+ Email' id='email' required>
                     <input class='auth-input fullwidth fs-12' style='margin-top:1rem;' type='password' name='password' placeholder='+ Password' id='password' minlength='8' maxlength='20' required>
 
-                    <?php
-                        // echo '<p class="fs-10 d-flex justify-content-between flex-row flex-wrap" style="color:red;margin-top:5px;">
-                        //     <span id="foo" style="display:none;">&#9785; '.$_SESSION['display_error'].'</span>
-                        //     <a class="anchor">Forgot password?</a>
-                        // </p>';
+                    
+                    <p class='fs-10 d-flex justify-content-end flex-row flex-wrap' style='color:red;margin-top:5px;'>
+                        <span id='foo' style='display:none;'><?php echo $_SESSION['display_error']; ?></span>
+                    </p> 
 
-                        // if (isset($_SESSION['display_error']) && !empty($_SESSION['display_error'])) {
-                        //     echo '<script>document.getElementById("foo").style = "display:block"</script>';
-                        // }
+                    <?php
+                        if (isset($_SESSION['display_error']) && !empty($_SESSION['display_error'])) {
+                            echo '<script>document.getElementById("foo").style = "display:block"</script>';
+                            // echo '<script>
+                            //     window.setTimeout(() => { document.getElementById("foo").style = "display:block" }, 5000)
+                            // </script>';
+                        }
                     ?>
 
                     <button class='auth-button fullwidth fs-14' style='margin-top:4rem;border-radius:3px;' type='submit'>Sign Up</button>
@@ -46,18 +49,6 @@ session_start();
             </div>
         </div>
     </body>
-    <!-- <body>
-        <div class='container'>
-            <h1>Register</h1>
-            <form action='register.php' method='post' autocomplete='off'>
-                <input type='text' name='username' placeholder='Username' id='username' required>
-                <input type='email' name='email' placeholder='Email' id='email' required>
-                <input type='password' name='password' placeholder='Password' id='password' minlength='8' maxlength='20' required>
-
-                <input type='submit' value='Register'>
-
-                <p>Already have an account? <a href='./'>Sign In</a></p>
-            </form>
-        </div>
-    </body> -->
 </html>
+
+<?php unset($_SESSION['display_error']); ?>
