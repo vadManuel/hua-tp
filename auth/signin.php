@@ -33,7 +33,7 @@ session_start();
                     <?php
                         echo '<p class="fs-10 d-flex justify-content-between flex-row flex-wrap" style="color:red;margin-top:5px;">
                             <span id="foo" style="display:none;">&#9785; '.$_SESSION['display_error'].'</span>
-                            <a href="./reset" class="anchor">Forgot password?</a>
+                            <a href="./reset.php" class="anchor">Forgot password?</a>
                         </p>';
 
                         if (isset($_SESSION['display_error']) && !empty($_SESSION['display_error'])) {

@@ -40,8 +40,8 @@ if (!isset($_SESSION['product']) || !$loggedin) {
                                 </div>
                                 <div class='dropdown-content'>
                                     <a href='../'>Store</a>
-                                    <a href='./profile'>Profile</a>
-                                    <a href='../calls/logout'>Sign out</a>
+                                    <a href='./profile.php'>Profile</a>
+                                    <a href='../calls/logout.php'>Sign out</a>
                                 </div>
                             </div>
                         </div>
