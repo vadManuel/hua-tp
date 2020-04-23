@@ -19,19 +19,19 @@ $stmt->close();
 <html>
     <head>
         <meta charset='utf-8'>
-        <link rel='icon' type='image/png' href='media/favicon.png' />
-        <link rel='manifest' href='manifest.json' />
+        <link rel='icon' type='image/png' href='../media/favicon.png' />
+        <link rel='manifest' href='../manifest.json' />
         <meta name='viewport' content='width=device-width, initial-scale=1'>
 
         <title>Profile Page</title>
-        <link href='style/custom.css' rel='stylesheet' type='text/css'>
+        <link href='../style/custom.css' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <nav>
             <div>
                 <h1>Hua</h1>
-                <a href='home'>Home</a>
-                <a href='authentication/calls/logout.php'>Logout</a>
+                <a href='../'>Home</a>
+                <a href='../call/logout.php'>Logout</a>
             </div>
         </nav>
         <div>

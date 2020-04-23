@@ -84,8 +84,8 @@ $stmt->close();
                                         </a>
                                     </div>
                                     <div class='dropdown-content'>
-                                        <a href='./main/profile'>Profile</a>
-                                        <a href='./authentication/calls/logout'>Sign out</a>
+                                        <a href='../main/profile'>Profile</a>
+                                        <a href='../calls/logout'>Sign out</a>
                                     </div>
                                 </div>
                             <?php
@@ -97,8 +97,8 @@ $stmt->close();
                                         <div class='bottom'>Sign In/Up</div>
                                     </div>
                                     <div class='dropdown-content'>
-                                        <a href='../authentication/login'>Sign In</a>
-                                        <a href='../authentication/signup'>Sign Up</a>
+                                        <a href='../auth/login'>Sign In</a>
+                                        <a href='../auth/signup'>Sign Up</a>
                                     </div>
                                 </div>
                             <?php

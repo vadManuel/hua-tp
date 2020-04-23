@@ -1,6 +1,6 @@
 <?php
 
-include 'utility/util.php';
+include '../utility/util.php';
 $con = open_connection();
 
 if(isset($_POST['upload_product'])) {
@@ -73,12 +73,12 @@ $_FILES = array();
 <html>
 <head>
     <meta charset='utf-8'>
-    <link rel='icon' type='image/png' href='media/favicon.png' />
-    <link rel='manifest' href='manifest.json' />
+    <link rel='icon' type='image/png' href='../media/favicon.png' />
+    <link rel='manifest' href='../manifest.json' />
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     
     <title>Create Products and Tags</title>
-    <link href='style/custom.css' rel='stylesheet' type='text/css'>
+    <link href='../style/custom.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
 

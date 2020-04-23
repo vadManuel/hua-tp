@@ -19,7 +19,7 @@ session_start();
         <div class='middle'>
             <div class='d-flex flex-column align-items-center justify-content-center flex-nowrap' style='height:100%'>
                 <!-- Judge the professor for not letting me use bootstrap -->
-                <a href='..'>
+                <a href='../'>
                     <img style='height:140px;' src='../media/hua_logo.png' alt='' />
                 </a>
                 <!-- <div style='width:64px;height:64px;margin-bottom:-67px;z-index:1;border-radius:100%;background-color:white;'></div>
@@ -33,7 +33,7 @@ session_start();
                     <?php
                         echo '<p class="fs-10 d-flex justify-content-between flex-row flex-wrap" style="color:red;margin-top:5px;">
                             <span id="foo" style="display:none;">&#9785; '.$_SESSION['display_error'].'</span>
-                            <a href="reset" class="anchor">Forgot password?</a>
+                            <a href="./reset" class="anchor">Forgot password?</a>
                         </p>';
 
                         if (isset($_SESSION['display_error']) && !empty($_SESSION['display_error'])) {

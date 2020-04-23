@@ -1,4 +1,8 @@
-<?php $prefix = stripslashes($GLOBALS['prefix']); ?>
+<?php
+// global prefix
+// mostly used for local development
+$prefix = stripslashes($GLOBALS['prefix']);
+?>
 
 <!DOCTYPE html>
 <html>
