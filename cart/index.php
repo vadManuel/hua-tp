@@ -6,25 +6,58 @@ session_start();
 $con = open_connection();
 setlocale(LC_MONETARY, 'en_US');
 
-$stmt = $con->prepare('SELECT ppt.product_id, ppt.product_name, ppt.image_path, ppt.price, ppt.stock, t.tag_name FROM (SELECT p.product_id as product_id, p.product_name as product_name, p.image_path as image_path, p.price as price, p.stock as stock, pt.tag_id as tag_id FROM products p INNER JOIN product_tags pt ON p.product_tags_id = pt.product_tags_id) ppt INNER JOIN tags t ON ppt.tag_id = t.tag_id');
+
+// get the product_id for the cart item we're looking for
+$stmt = $con->prepare('SELECT products.product_id
+                        from products
+                        INNER JOIN orders on orders.product_id = products.product_id
+                        WHERE orders.user_id = ? and orders.completed = 0;');
+$stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
 $result = $stmt->get_result();
 
-$products = array();
-while ($product = $result->fetch_assoc()) {
-    if (isSet($products[$product['product_id']])) {
-        array_push($products[$product['product_id']]['tag_names'], $product['tag_name']);
-    } else {
-        $products[$product['product_id']] = array(
-            'product_name' => $product['product_name'],
-            'image_path' => $product['image_path'],
-            'price' => $product['price'],
-            'stock' => $product['stock'],
-            'tag_names' => array($product['tag_name'])
-        );
+// if there is nothing to show, show nothing
+if($result->num_rows > 0 ){
+
+    while($item = $result->fetch_assoc()){
+        $cart = $item['product_id'];
     }
+
+    // gets the data for the product cards
+    $stmt = $con->prepare('SELECT ppt.product_id, ppt.product_name, ppt.image_path, ppt.price, ppt.stock, t.tag_name, c.discount
+    FROM 
+        (SELECT p.product_id as product_id, p.product_name as product_name, p.image_path as image_path, p.price as price, p.stock as stock, pt.tag_id as tag_id 
+        FROM products p 
+        INNER JOIN product_tags pt ON p.product_tags_id = pt.product_tags_id) 
+        ppt INNER JOIN tags t ON ppt.tag_id = t.tag_id
+        INNER JOIN coupons c on ppt.product_id = c.product_id
+    WHERE ppt.product_id = ?');
+    $stmt->bind_param('i', $cart);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $products = array();
+    while ($product = $result->fetch_assoc()) {
+        if (isSet($products[$product['product_id']])) {
+            array_push($products[$product['product_id']]['tag_names'], $product['tag_name']);
+        } else {
+            $products[$product['product_id']] = array(
+                'product_name' => $product['product_name'],
+                'image_path' => $product['image_path'],
+                'price' => $product['price'],
+                'discount' => $product['discount'],
+                'stock' => $product['stock'],
+                'tag_names' => array($product['tag_name'])
+            );
+        }
+    }
+
+    echo '<script>console.log('.json_encode($products, JSON_HEX_TAG).');</script>';
+
+} else {
+    
+
 }
-echo '<script>console.log('.json_encode($products, JSON_HEX_TAG).');</script>';
 
 $loggedin = !!isset($_SESSION['loggedin']);
 // $stmt = $con->prepare('SELECT activation_code FROM accounts WHERE id = ?');
@@ -59,12 +92,7 @@ $stmt->close();
                             <img style='height:5rem;' src='./media/hua_logo.png' alt='' />
                         </a>
                         <div class='navbar-links'>
-                            <div class='searchbar'>
-                                <input placeholder='fuzzy search' class='search-input' />
-                                <button class='search-button'>
-                                    <img style='height:1.5rem;' src='./media/search.png' alt='' />
-                                </button>
-                            </div>
+                            
                             <!-- <div class='profile-link'>
                                 <div class='top'>Welcome</div>
                                 <a href='login' class='bottom'>Sign In/Up</a>
@@ -98,10 +126,6 @@ $stmt->close();
                             <a href='../cart'>
                                 <div class='cart'>
                                     <img style='height:4rem;' src='./media/cart.png' alt='' />
-                                    <div class='cart-display'>
-                                        <div class='top'>$200.00</div>
-                                        <div class='bottom'>1 item</div>
-                                    </div>
                                 </div>
                             </a>
                         </div>
@@ -113,6 +137,74 @@ $stmt->close();
                 </div>
                 </div>
             </div>
+            
+            <div class='container'>
+                <div class='card-group'>
+                    <?php
+                        foreach ($products as $index=>$product) {
+                    ?>
+            
+                        <div class='card'>
+
+                            <div class='card-image'>
+                                <img src=<?php echo '"'.$product['image_path'].'"'; ?> alt=<?php echo '"'.$product['product_name'].'"'; ?> />
+                            </div>
+                            <div class='card-body'>
+
+                                <h1><?php echo $product['product_name']; ?></h1>
+
+                                <div>
+                                    <div class='chip'><?php echo implode('</div><div class="chip">', $product['tag_names']); ?></div>
+                                </div>
+
+                                <div class='price'><?php echo money_format('%n', $product['price']); ?>$</div>
+
+                            </div>  
+                            
+                            
+                        </div>
+                     
+                        <div class='card'>
+                        
+                            
+                            <div><?php echo money_format('%n', $product['price']); ?>$</div>
+                            <div><?php echo money_format('%n', $product['discount']); ?>$</div>
+              
+                            <h1>Total</h1>
+                            <div><?php echo money_format('%n', ($product['price'] - $product['discount'])); ?>$</div>
+                            
+                        </div>
+                        
+                        <div class='card'>
+                            
+                            <h1>Enter Payment Information</h1>
+                            
+                            <form method="post" action="../utility/complete_order.php">
+                                <input type="hidden" id="user_id" name="user_id" value=<?php echo $_SESSION['id']?> />
+                                
+                                <label for="name">Name on Card:</label><br>
+                                <input type="text" id="name" name="name" required><br>
+                                
+                                <label for="card_number">Card Number:</label><br>
+                                <input type="text" id="card_number" name="card_number" required><br>
+                                
+                                <label for="security_code">Security Code:</label><br>
+                                <input type="text" id="security_code" name="security_code" required><br>
+                                
+                                <label for="expriration">Expriration Date</label><br>
+                                <input type="text" id="expriration" name="expriration" required><br>
+                                
+                                <button type="submit">Submit Order</button>
+                                
+                            </form>
+                            
+                        </div>
+                     
+                     <?php } ?>                
+                </div>
+            </div>
+            
+            
         </div>
     </body>
 </html>

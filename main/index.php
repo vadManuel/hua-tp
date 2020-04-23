@@ -6,7 +6,7 @@ session_start();
 $con = open_connection();
 setlocale(LC_MONETARY, 'en_US');
 
-$stmt = $con->prepare('SELECT ppt.product_id, ppt.product_name, ppt.image_path, ppt.price, ppt.stock, t.tag_name, c.discount, c.expires_on
+$stmt = $con->prepare('SELECT ppt.product_id, ppt.product_name, ppt.image_path, ppt.price, ppt.stock, t.tag_name, c.discount
 FROM 
 	(SELECT p.product_id as product_id, p.product_name as product_name, p.image_path as image_path, p.price as price, p.stock as stock, pt.tag_id as tag_id 
      FROM products p 
@@ -29,7 +29,6 @@ while ($product = $result->fetch_assoc()) {
             'price' => $product['price'],
             'stock' => $product['stock'],
             'discount' => $product['discount'],
-            'expires_on' => $product['expires_on'],
             'tag_names' => array($product['tag_name'])
         );
     }
@@ -162,6 +161,8 @@ $con->close();
                             </form>
                             
                         </div>
+                        
+                     
                      <?php } ?>                
                 </div>
             </div>
