@@ -8,12 +8,12 @@ session_start();
 <html>
     <head>
         <meta charset='utf-8'>
-        <link rel='icon' type='image/png' href='media/favicon.png' />
-        <link rel='manifest' href='manifest.json' />
+        <link rel='icon' type='../image/png' href='../media/favicon.png' />
+        <link rel='manifest' href='../manifest.json' />
         <meta name='viewport' content='width=device-width, initial-scale=1'>
 
         <title>Reset Password</title>
-        <link href='style/custom.css' rel='stylesheet' type='text/css'>
+        <link href='../style/custom.css' rel='stylesheet' type='text/css'>
     </head>
     <body class='outer'>
         <div class='middle'>

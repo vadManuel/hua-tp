@@ -6,8 +6,6 @@ function console_log($string, $encode=TRUE) {
     } else {
         echo '<script>console.log("'.$string.'");</script>';
     }
-    
-    return;
 }
 
 function open_connection() {
@@ -30,6 +28,5 @@ function open_connection() {
         exit('Failed to connect to MySQL: ' . mysqli_connect_error());
     }
 }
-
 
 ?>

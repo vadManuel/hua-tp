@@ -165,11 +165,11 @@ $records = mysqli_query($con, 'SELECT * FROM images'); // fetch data from databa
 
 while($data = mysqli_fetch_array($records)) {
 ?>
-  <!-- <tr>
+  <tr>
     <td><?php echo $data['image_id']; ?></td>
     <td><?php echo $data['file_path']; ?></td>
     <td><img src="<?php echo $data['file_path']; ?>" alt='nope' width="100" height="100"></td>
-  </tr> -->
+  </tr>
 <?php } ?>
 
 </table>

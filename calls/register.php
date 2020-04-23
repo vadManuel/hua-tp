@@ -1,7 +1,6 @@
 <?php
 
 include '../utility/util.php';
-include '../utility/buildMessage.php';
 
 session_start();
 
@@ -11,7 +10,7 @@ if (!isset($_POST['username'], $_POST['password'], $_POST['email'])
     || empty($_POST['username']) || empty($_POST['password']) || empty($_POST['email'])
     ) {
     // this shouldn't really happen unless someone goes directly to /register.php
-    header('Location: ../../signup');
+    header('Location: ../auth/signup.php');
     exit;
 }
 
@@ -43,7 +42,7 @@ if ($stmt = $con->prepare('SELECT user_id, password FROM users WHERE email = ?')
             $_SESSION['username'] = $_POST['username'];
             $_SESSION['id'] = $id;
 
-            header('Location: ../index');
+            header('Location: ../');
             
         } else {
             echo 'Error building registration statement';
